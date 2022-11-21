@@ -1,0 +1,11 @@
+.link a {
+  text-decoration: none;
+  color: grey;
+  font-size: 20px;
+  margin: 10px;
+}
+ 
+.link a::after:hover {
+  color: aquamarine;
+  text-decoration: none;
+}
