@@ -1,8 +1,10 @@
 import styles from "../styles/Home.module.css";
 import Login from "../components/Login";
 import MainContainer from "../components/MainContainer";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import jwt_decode from "jwt-decode";
+import { useRouter } from "next/router";
+import { en, ru } from "../translations";
 
 export default function Home() { 
   const [user, setUser] = useState(false);
@@ -13,6 +15,22 @@ export default function Home() {
     let userObject = jwt_decode(response.credential);
     console.log(userObject);
     setUser(userObject);
+  }
+
+  
+  const router = useRouter();
+
+  const { locale } = router;
+
+  let t;
+
+  switch(locale){
+    case "ru":
+      t = ru;
+      break;
+    case "en":
+      t = en;
+      break;
   }
 
   useEffect(() => {
@@ -38,7 +56,7 @@ export default function Home() {
           </div>
         ) : (
           <div>
-            <div className={styles.text}>Login</div>
+            <div className={styles.text}>{t.login}</div>
             <Login />
             <div id="singInDiv"></div>
           </div>

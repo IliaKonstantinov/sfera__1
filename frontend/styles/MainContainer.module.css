@@ -13,3 +13,15 @@
   padding: 2px; 
   border: 1px solid #999;
 }
+
+.locale{
+  color: #fff;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+.locale:hover{
+  color: #fff305;
+}
