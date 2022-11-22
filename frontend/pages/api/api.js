@@ -13,12 +13,12 @@ instance.interceptors.request.use((config) => {
 export const LoginAPI = {
   PostLogin(dataPost) {
     return instance
-      .post(`/login/`, { dataPost })
+      .post(`/login`, {...dataPost})
       .then((response) => response.data);
   },
   Registration(dataPost) {
     return instance
-      .post(`/register/`, { dataPost })
+      .post(`/register`, {...dataPost})
       .then((response) => response.data);
   },
 };

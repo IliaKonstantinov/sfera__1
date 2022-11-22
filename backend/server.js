@@ -27,7 +27,13 @@ function verifyToken(token){
 
 // Check if the user exists in database
 function isAuthenticated({email, password}){
-  return userdb.users.findIndex(user => user.email === email && user.password === password) !== -1
+  let counter = 0;
+  userdb.users.map((user) =>{
+    if(user.email === email && user.password === password){
+      counter += 1
+    }
+  })
+  return counter;
 }
 
 // Register New User
@@ -35,8 +41,7 @@ server.post('/auth/register', (req, res) => {
   console.log("register endpoint called; request body:");
   console.log(req.body);
   const {email, password} = req.body;
-
-  if(isAuthenticated({email, password}) === true) {
+  if(isAuthenticated({email, password}) > 0) {
     const status = 401;
     const message = 'Email and Password already exist';
     res.status(status).json({status, message});
@@ -80,7 +85,7 @@ server.post('/auth/login', (req, res) => {
   console.log("login endpoint called; request body:");
   console.log(req.body);
   const {email, password} = req.body;
-  if (isAuthenticated({email, password}) === false) {
+  if (isAuthenticated({email, password}) === 0) {
     const status = 401
     const message = 'Incorrect email or password'
     res.status(status).json({status, message})
