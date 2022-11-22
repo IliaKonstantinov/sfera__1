@@ -11,7 +11,7 @@ const registration = (props) => {
 
   const { locale } = router;
 
-  let t;
+  let t = en;
 
   switch(locale){
     case "ru":

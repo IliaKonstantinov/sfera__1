@@ -22,7 +22,7 @@ export default function Home() {
 
   const { locale } = router;
 
-  let t;
+  let t = en;
 
   switch(locale){
     case "ru":
@@ -35,7 +35,7 @@ export default function Home() {
 
   useEffect(() => {
     /* glogal google*/
-    google.accounts.id.initialize({
+    window.google.accounts.id.initialize({
       client_id:
         "477480946204-rpt4a6fum1v8jh8banbdrtonp1g5ioa0.apps.googleusercontent.com",
       callback: handleCallbackResponse,
@@ -47,7 +47,7 @@ export default function Home() {
   }, []);
 
   return (
-    <MainContainer title="Login" className={styles.container}>
+    <MainContainer data-testid="main" title="Login" className={styles.container}>
       <main className={styles.main}>
         {user ? (
           <div>

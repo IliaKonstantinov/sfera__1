@@ -26,7 +26,7 @@ export default function RegForm(props) {
 
   const { locale } = router;
 
-  let t;
+  let t = en;
 
   switch(locale){
     case "ru":
