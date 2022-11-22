@@ -6,6 +6,6 @@
 }
  
 .link a::after:hover {
-  color: aquamarine;
+  color: aquamarine; 
   text-decoration: none;
 }

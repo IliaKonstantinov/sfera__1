@@ -4,7 +4,7 @@ import MainContainer from "../components/MainContainer";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 
-export default function Home() {
+export default function Home() { 
   const [user, setUser] = useState(false);
   console.log(user);
   function handleCallbackResponse(response) {
