@@ -3,10 +3,9 @@ import A from "./A";
 import style from "../styles/MainContainer.module.css";
 
 const MainContainer = ({ children, title }) => {
-   
   return (
     <>
-      <Head> 
+      <Head>
         <title>{title}</title>
         <meta name="description" content="auth-project" />
         <link rel="icon" href="/favicon.ico" />

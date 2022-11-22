@@ -10,7 +10,7 @@ const registration = (props) => {
         <div className={styles.text}>Registration</div>
         <RegForm buttonName="Registration" />
       </main>
-    </MainContainer>  
+    </MainContainer>
   );
 };
 
