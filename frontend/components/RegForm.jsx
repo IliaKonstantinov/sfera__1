@@ -7,9 +7,10 @@ export default function RegForm(props){
 
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const onSubmit = e => {console.log(e)
+  const onSubmit = e => {console.log("OnSubmit data",e)
     LoginAPI.Registration(e).then(
       (data) => {
+        console.log("Response data",data);
         window.localStorage.setItem("token", data.access_token);
       }
     );};
