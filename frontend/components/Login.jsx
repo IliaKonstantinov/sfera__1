@@ -4,48 +4,41 @@ import styles from "../styles/Home.module.css";
 import { LoginAPI } from "../pages/api/api";
 
 const Login = (props) => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
 
-  const myfun = (e) => {
-    LoginAPI.PostLogin({ email: e.login, password: e.password }).then(
+  const onSubmit = e => {console.log(e)
+    LoginAPI.PostLogin(e).then(
       (data) => {
         console.log("DATA LOGIN", data);
       }
-    );
-  };
+    );};
  
    
   return (
-    <form onSubmit={handleSubmit(myfun)} className={styles.form}>
-      <div>
-        <input placeholder="Login" {...register("login", { required: true })} />
-        {errors.login && errors.login.type == "required" && (
-          <p className={styles.error}>Please enter you Login</p>
-        )}
-        {errors.login && errors.login.type == "required" && (
-          <p className={styles.error}>Incorrect Login</p>
-        )}
-      </div>
-      <div>
-        <input
-          placeholder="Password"
-          {...register("password", { required: true })}
-        />
-        {errors.password && errors.password.type == "required" && (
-          <p className={styles.error}>Please enter you Password</p>
-        )}
-      </div>
-      <div>
-        <input type="checkbox" /> remember me
-      </div>
-      <div>
-        <button onClick={myfun}>Login</button>
-      </div>
-    </form>
+  <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+  <div>
+    <input placeholder="email" {...register("email", { required: true })} />
+     {errors.email && errors.email.type == "required" && (
+      <p className={styles.error}>Please enter you email</p>
+    )}
+  </div>
+  <div>
+    <input
+      placeholder="password"
+      {...register("password", { required: true })}
+    />
+    {errors.password && errors.password.type == "required" && (
+      <p className={styles.error}>Please enter you Password</p>
+    )}
+  </div>
+  <div>
+    <input type="checkbox" /> remember me
+  </div>
+  <div>
+    <input type="submit" value="Login"/>
+  </div>
+</form>
   );
 };
 

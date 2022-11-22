@@ -3,34 +3,30 @@ import { useForm } from "react-hook-form";
 import styles from "../styles/Home.module.css";
 import { LoginAPI } from "../pages/api/api";
 
-const RegForm = (props) => {
-   
-  const { 
-    register, 
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+export default function RegForm(props){
 
-  const myfun = (e) => {
-    LoginAPI.Registration({ email: e.login, password: e.password }).then(
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+
+  const onSubmit = e => {console.log(e)
+    LoginAPI.Registration(e).then(
       (data) => {
         window.localStorage.setItem("token", data.access_token);
       }
-    );
-  };
+    );};
 
   return (
-    <form onSubmit={handleSubmit(myfun)} className={styles.form}>
+    
+       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div>
-        <input placeholder="Login" {...register("login", { required: true })} />
-        {errors.login && errors.login.type == "required" && (
-          <p className={styles.error}>Please enter you Login</p>
+        <input placeholder="email" {...register("email", { required: true })} />
+         {errors.email && errors.email.type == "required" && (
+          <p className={styles.error}>Please enter you email</p>
         )}
       </div>
       <div>
         <input
-          placeholder="Password"
-          {...register("password", { required: true, minLength: 5 })}
+          placeholder="password"
+          {...register("password", { required: true })}
         />
         {errors.password && errors.password.type == "required" && (
           <p className={styles.error}>Please enter you Password</p>
@@ -40,10 +36,10 @@ const RegForm = (props) => {
         <input type="checkbox" /> remember me
       </div>
       <div>
-        <button onClick={myfun}>{props.buttonName}</button>
+        <input type="submit"/>
       </div>
     </form>
   );
 };
 
-export default RegForm;
+
