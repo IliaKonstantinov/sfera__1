@@ -23,13 +23,10 @@
   border: 1px solid #999;
 }
 
-<<<<<<< HEAD
 .locales{
   border: 1px solid #000;
 }
 
-=======
->>>>>>> 0f660e1fc827f10859f0e68c9dd6ffb533752176
 .locale{
   color: #fff;
   border: none;
@@ -41,7 +38,6 @@
 .locale:hover{
   color: #fff305;
 }
-<<<<<<< HEAD
 
 .locale1{
   color: #000;
@@ -54,5 +50,3 @@
 .locale1:hover{
   color: #fff305;
 }
-=======
->>>>>>> 0f660e1fc827f10859f0e68c9dd6ffb533752176
