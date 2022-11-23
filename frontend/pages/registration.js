@@ -1,16 +1,17 @@
 import React from "react";
-import MainContainer from "../components/MainContainer";
+import MainContainerConnect from "../components/MainContainerConnect";
 import styles from "../styles/Home.module.css";
-import RegForm from "../components/RegForm";
+import { Provider } from "react-redux";
+import MainRegistration from "../components/MainRegistration";
+import store from "../components/redux/redux-store.js";
 
 const registration = (props) => {
   return (
-    <MainContainer title="registration">
-      <main className={styles.main}>
-        <div className={styles.text}>Registration</div>
-        <RegForm buttonName="Registration" />
-      </main>
-    </MainContainer>
+    <Provider store={store}>
+      <MainContainerConnect title="registration">
+        <MainRegistration />
+      </MainContainerConnect>
+    </Provider>
   );
 };
 

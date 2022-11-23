@@ -36,9 +36,6 @@ const Login = (props) => {
         )}
       </div>
       <div>
-        <input type="checkbox" /> remember me
-      </div>
-      <div>
         <input type="submit" value="Login" />
       </div>
     </form>

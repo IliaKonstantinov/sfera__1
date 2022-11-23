@@ -37,9 +37,6 @@ export default function RegForm(props) {
         )}
       </div>
       <div>
-        <input type="checkbox" /> remember me
-      </div>
-      <div>
         <input type="submit" />
       </div>
     </form>
