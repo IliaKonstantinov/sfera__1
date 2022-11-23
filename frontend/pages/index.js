@@ -1,4 +1,11 @@
 import styles from "../styles/Home.module.css";
+<<<<<<< HEAD
+import Main from "../components/Main";
+import MainContainerConnect from "../components/MainContainerConnect";
+import { Provider } from "react-redux";
+import store from "../components/redux/redux-store.js";
+import { useEffect } from "react";
+=======
 import Login from "../components/Login";
 import MainContainer from "../components/MainContainer";
 import { useEffect, useState} from "react";
@@ -45,8 +52,23 @@ export default function Home() {
       size: "large",
     });
   }, []);
+>>>>>>> a1e1d319776188a0fca7698e061ecb825069bd1f
 
+export default function Home() {
+  // useEffect(() => {
+  //   if (!window.localStorage.getItem("token")) {
+  //     window.localStorage.setItem("token", null);
+  //   }
+  // }, []);
   return (
+<<<<<<< HEAD
+    <Provider store={store}>
+      <MainContainerConnect title="Login" className={styles.container}>
+        <Main />
+        <footer className={styles.footer}></footer>
+      </MainContainerConnect>
+    </Provider>
+=======
     <MainContainer data-testid="main" title="Login" className={styles.container}>
       <main className={styles.main}>
         {user ? (
@@ -64,5 +86,6 @@ export default function Home() {
       </main>
       <footer className={styles.footer}></footer>
     </MainContainer>
+>>>>>>> a1e1d319776188a0fca7698e061ecb825069bd1f
   );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import styles from "../styles/Home.module.css";
 import { LoginAPI } from "../pages/api/api";
@@ -17,6 +16,7 @@ export default function RegForm(props) {
     console.log("OnSubmit data", e);
     LoginAPI.Registration(e).then((data) => {
       console.log("Response data", data);
+
       window.localStorage.setItem("token", data.access_token);
     });
   };
@@ -55,7 +55,11 @@ export default function RegForm(props) {
         )}
       </div>
       <div>
+<<<<<<< HEAD:frontend/components/RegForm.js
+        <input type="submit" />
+=======
         <input type="submit" value={t.submit} />
+>>>>>>> a1e1d319776188a0fca7698e061ecb825069bd1f:frontend/components/RegForm.jsx
       </div>
     </form>
   );
