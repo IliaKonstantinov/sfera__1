@@ -22,3 +22,31 @@
 .nav_style1 div {
   border: 1px solid #999;
 }
+
+.locales{
+  border: 1px solid #000;
+}
+
+.locale{
+  color: #fff;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+.locale:hover{
+  color: #fff305;
+}
+
+.locale1{
+  color: #000;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  transition: color .3s ease;
+}
+
+.locale1:hover{
+  color: #fff305;
+}

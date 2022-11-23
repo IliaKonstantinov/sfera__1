@@ -2,26 +2,29 @@ import styles from "../styles/Main.module.css";
 import Login from "./Login";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
-import { connect } from "react-redux";
+import { connect, useDispatch, useSelector } from "react-redux";
+import { setUser } from "./redux/main-reducer";
 
 const Main = (props) => {
   console.log(props);
-  const [user, setUser] = useState(false);
+  const [isToken, setIsToken] = useState("");
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.mainPage.user)
+  console.log(user);
 
   function handleCallbackResponse(response) {
     console.log("Eccoded JWT ID token: " + response.credential);
-    window.localStorage.setItem("token", response.credential);
+    setIsToken(window.localStorage.setItem("token", response.credential));
     let userObject = jwt_decode(response.credential);
     console.log(userObject);
-    setUser(userObject);
+    dispatch({type: "SET_USER", payload: userObject})
   }
 
   const signOut = () => {
-    window.localStorage.setItem("token", "");
-    setUser({});
+    setIsToken(window.localStorage.setItem("token", ""));
+    dispatch({type: "SET_USER", payload: null})
   };
 
-  const isToken = window.localStorage.getItem("token");
 
   useEffect(() => {
     /* glogal google*/
@@ -34,13 +37,18 @@ const Main = (props) => {
       theme: "outline",
       size: "large",
     });
-  }, [isToken]);
+    setIsToken(window.localStorage.getItem("token"));
+    if(window.localStorage.getItem("token").length){
+      const userData = jwt_decode(window.localStorage.getItem("token"));
+      dispatch({type: "SET_USER", payload: userData})
+    }
+  }, [isToken]); 
 
   return (
     <main
       className={!props.toggleChangeStyle ? styles.main_style1 : styles.main}
     >
-      {isToken !== "" ? (
+      {user !== null ? (
         <div>
           <img scr={user.pictures} />
           <h3>{user.name}</h3>
