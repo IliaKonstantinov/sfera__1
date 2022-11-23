@@ -1,6 +1,8 @@
 export const en = {
   login: "Log in",
   registration: "Registration",
+  style: "change style",
+  signOut: "sign out",
   email: "email",
   password: "password",
   submit: "submit",
@@ -12,6 +14,8 @@ export const en = {
 export const ru = {
   login: "Войти",
   registration: "Зарегистрироваться",
+  style: "сменить тему",
+  signOut: "выйти",
   email: "почта",
   password: "пароль",
   submit: "отправить",

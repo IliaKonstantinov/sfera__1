@@ -53,7 +53,7 @@ const MainContainer = (props) => {
           href="/registration"
           text={t.registration}
         ></A>
-        <button onClick={onChangeStyles}>Change style</button>
+        <button onClick={onChangeStyles}>{t.style}</button>
         <div className={!props.toggleChangeStyle ? styles.locales : ''}>
           <button className={!props.toggleChangeStyle ? styles.locale1 : styles.locale} onClick={() => handleChangeLang("ru")}>Русский</button>
           <button className={!props.toggleChangeStyle ? styles.locale1 : styles.locale} onClick={() => handleChangeLang("en")}>English</button>

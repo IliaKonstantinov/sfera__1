@@ -55,11 +55,7 @@ export default function RegForm(props) {
         )}
       </div>
       <div>
-<<<<<<< HEAD:frontend/components/RegForm.js
-        <input type="submit" />
-=======
         <input type="submit" value={t.submit} />
->>>>>>> a1e1d319776188a0fca7698e061ecb825069bd1f:frontend/components/RegForm.jsx
       </div>
     </form>
   );

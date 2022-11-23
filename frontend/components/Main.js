@@ -3,7 +3,8 @@ import Login from "./Login";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { connect, useDispatch, useSelector } from "react-redux";
-import { setUser } from "./redux/main-reducer";
+import { useRouter } from "next/router";
+import { en, ru } from "../translations";
 
 const Main = (props) => {
   console.log(props);
@@ -24,6 +25,21 @@ const Main = (props) => {
     setIsToken(window.localStorage.setItem("token", ""));
     dispatch({type: "SET_USER", payload: null})
   };
+
+  const router = useRouter();
+
+  const { locale } = router;
+
+  let t = en;
+
+  switch(locale){
+    case "ru":
+      t = ru;
+      break;
+    case "en":
+      t = en;
+      break;
+  }
 
 
   useEffect(() => {
@@ -52,11 +68,11 @@ const Main = (props) => {
         <div>
           <img scr={user.pictures} />
           <h3>{user.name}</h3>
-          <button onClick={signOut}>Sign out</button>
+          <button onClick={signOut}>{t.signOut}</button>
         </div>
       ) : (
         <div>
-          <div className={styles.text}>Login</div>
+          <div className={styles.text}>{t.login}</div>
           <Login />
           <div id="singInDiv"></div>
         </div>

@@ -53,14 +53,7 @@ const Login = (props) => {
         )}
       </div>
       <div>
-<<<<<<< HEAD:frontend/components/Login.js
-        <input type="submit" value="Login" />
-=======
-        <input type="checkbox" /> {t.remember}
-      </div>
-      <div>
         <input type="submit" value={t.login} />
->>>>>>> a1e1d319776188a0fca7698e061ecb825069bd1f:frontend/components/Login.jsx
       </div>
     </form>
   );
