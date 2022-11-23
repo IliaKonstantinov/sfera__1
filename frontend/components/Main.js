@@ -1,6 +1,5 @@
 import styles from "../styles/Main.module.css";
 import Login from "./Login";
-import React from "react";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { connect } from "react-redux";

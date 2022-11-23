@@ -1,5 +1,4 @@
 import styles from "../styles/Main.module.css";
-import React from "react";
 import { connect } from "react-redux";
 import RegForm from "./RegForm";
 

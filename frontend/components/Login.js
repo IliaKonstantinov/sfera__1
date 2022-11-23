@@ -1,9 +1,8 @@
-import React from "react";
 import { useForm } from "react-hook-form";
 import styles from "../styles/Home.module.css";
 import { LoginAPI } from "../pages/api/api";
 
-export default function RegForm(props) {
+const Login = (props) => {
   const {
     register,
     handleSubmit,
@@ -12,10 +11,9 @@ export default function RegForm(props) {
   } = useForm();
 
   const onSubmit = (e) => {
-    console.log("OnSubmit data", e);
-    LoginAPI.Registration(e).then((data) => {
-      console.log("Response data", data);
-      window.localStorage.setItem("token", data.access_token);
+    console.log(e);
+    LoginAPI.PostLogin(e).then((data) => {
+      console.log("DATA LOGIN", data);
     });
   };
 
@@ -37,8 +35,10 @@ export default function RegForm(props) {
         )}
       </div>
       <div>
-        <input type="submit" />
+        <input type="submit" value="Login" />
       </div>
     </form>
   );
-}
+};
+
+export default Login;
