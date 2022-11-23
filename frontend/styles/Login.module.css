@@ -1,8 +1,14 @@
-.form div {
+.input_text,
+.input_submit {
+  padding: 2px 20px;
   margin-top: 10px;
 }
 
 .error {
   font-size: 10px;
   color: red;
+}
+
+.input_submit {
+  background-color: #faebd7;
 }

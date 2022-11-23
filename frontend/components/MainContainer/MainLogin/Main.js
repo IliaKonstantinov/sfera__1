@@ -73,10 +73,10 @@ const Main = (props) => {
           <button onClick={signOut}>{t.signOut}</button>
         </div>
       ) : (
-        <div>
+        <div className={styles.form_wrapper}>
           <div className={styles.text}>{t.login}</div>
           <Login />
-          <div id="singInDiv"></div>
+          <div id="singInDiv" className={styles.google}></div>
         </div>
       )}
     </main>

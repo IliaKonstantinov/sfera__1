@@ -13,7 +13,6 @@ const Login = (props) => {
   } = useForm();
 
   const onSubmit = (e) => {
-    console.log(e);
     LoginAPI.PostLogin(e).then((data) => {
       console.log("DATA LOGIN", data);
     });
@@ -42,6 +41,7 @@ const Login = (props) => {
       <div className={styles.input}>
         <input
           placeholder={t.email}
+          className={styles.input_text}
           {...register("email", { required: true })}
         />
         {errors.email && errors.email.type == "required" && (
@@ -51,6 +51,7 @@ const Login = (props) => {
       <div>
         <input
           placeholder={t.password}
+          className={styles.input_text}
           {...register("password", { required: true })}
         />
         {errors.password && errors.password.type == "required" && (
@@ -58,7 +59,7 @@ const Login = (props) => {
         )}
       </div>
       <div>
-        <input type="submit" value={t.login} />
+        <input type="submit" value={t.login} className={styles.input_submit} />
       </div>
     </form>
   );

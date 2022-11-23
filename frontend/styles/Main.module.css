@@ -1,7 +1,6 @@
 .main,
 .main_style1 {
-  min-height: 100vh;
-  padding: 4rem 0;
+  height: 100vh;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -13,4 +12,21 @@
 .main_style1 {
   background-color: #999;
   font-family: "Roboto", sans-serif;
+}
+
+.form_wrapper {
+  text-align: center;
+  min-height: 200px;
+  min-width: 250px;
+}
+
+.text {
+  height: fit-content;
+  text-align: center;
+  font-size: 25px;
+}
+
+.google {
+  margin-left: 25px;
+  margin-top: 20px;
 }
