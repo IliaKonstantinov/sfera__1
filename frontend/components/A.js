@@ -1,11 +1,16 @@
 import Link from "next/link";
-import style from "../styles/A.module.css";
+import { useRouter } from "next/router";
+import styles from "../styles/A.module.css";
 
 export default function A({ text, href }) {
+  const { pathname } = useRouter();
+
   return (
-    <div className={style.link}>
-      <Link href={href}>{text}</Link>
-    </div>
+      <Link
+        className={pathname == href ? styles.active : styles.link_wrapper}
+        href={href}
+      >
+        <div className={styles.link}>{text}</div>
+      </Link>
   );
 }
-  

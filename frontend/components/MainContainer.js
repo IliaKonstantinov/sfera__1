@@ -3,7 +3,6 @@ import A from "./A";
 import styles from "../styles/MainContainer.module.css";
 
 const MainContainer = (props) => {
-
   const onChangeStyles = () => {
     if (!props.toggleChangeStyle) {
       props.changeStyle1();
@@ -11,6 +10,7 @@ const MainContainer = (props) => {
       props.changeStyle2();
     }
   };
+
 
   return (
     <>
@@ -22,8 +22,16 @@ const MainContainer = (props) => {
       <div
         className={!props.toggleChangeStyle ? styles.nav : styles.nav_style1}
       >
-        <A href="/" text={"Login"}></A>
-        <A href="/registration" text={"Registration"}></A>
+        <A
+          
+          href="/"
+          text={"Login"}
+        ></A>
+        <A
+          
+          href="/registration"
+          text={"Registration"}
+        ></A>
         <button onClick={onChangeStyles}>Change style</button>
       </div>
       <div>{props.children}</div>

@@ -17,8 +17,11 @@ const Main = (props) => {
   }
 
   const signOut = () => {
+    window.localStorage.setItem("token", "");
     setUser({});
   };
+
+  const isToken = window.localStorage.getItem("token");
 
   useEffect(() => {
     /* glogal google*/
@@ -31,13 +34,13 @@ const Main = (props) => {
       theme: "outline",
       size: "large",
     });
-  }, []);
+  }, [isToken]);
 
   return (
     <main
       className={!props.toggleChangeStyle ? styles.main_style1 : styles.main}
     >
-      {user ? (
+      {isToken !== "" ? (
         <div>
           <img scr={user.pictures} />
           <h3>{user.name}</h3>

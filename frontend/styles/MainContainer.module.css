@@ -12,8 +12,7 @@
 
 .nav div,
 .nav_style1 div {
-  padding: 2px;
-  border: 1px solid #999;
+  padding: 5px;
 }
 
 .nav_style1 {
@@ -22,5 +21,4 @@
 
 .nav_style1 div {
   border: 1px solid #999;
-  border-radius: 5px;
 }

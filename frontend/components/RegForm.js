@@ -14,6 +14,7 @@ export default function RegForm(props) {
     console.log("OnSubmit data", e);
     LoginAPI.Registration(e).then((data) => {
       console.log("Response data", data);
+
       window.localStorage.setItem("token", data.access_token);
     });
   };

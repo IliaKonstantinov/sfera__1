@@ -1,11 +1,21 @@
-.link a {
+.link_wrapper {
+  background-color: #eee;
+}
+
+.active {
+  background-color: #333;
+}
+
+.link_wrapper:hover {
+  background-color: #666;
+}
+
+.active:hover {
+  background-color: #666;
+}
+
+.link {
   text-decoration: none;
   color: grey;
   font-size: 20px;
-  margin: 10px;
-}
- 
-.link a::after:hover {
-  color: aquamarine; 
-  text-decoration: none;
 }
