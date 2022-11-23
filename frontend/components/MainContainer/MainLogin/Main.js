@@ -1,16 +1,16 @@
-import styles from "../styles/Main.module.css";
-import Login from "./Login";
+import styles from "../../../styles/Main.module.css";
+import Login from "./Login/Login";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { cs, en, ru } from "../translations";
+import { cs, en, ru } from "../../../translations";
 
 const Main = (props) => {
   console.log(props);
   const [isToken, setIsToken] = useState("");
   const dispatch = useDispatch();
-  const user = useSelector(state => state.mainPage.user)
+  const user = useSelector((state) => state.mainPage.user);
   console.log(user);
 
   function handleCallbackResponse(response) {
@@ -18,12 +18,12 @@ const Main = (props) => {
     setIsToken(window.localStorage.setItem("token", response.credential));
     let userObject = jwt_decode(response.credential);
     console.log(userObject);
-    dispatch({type: "SET_USER", payload: userObject})
+    dispatch({ type: "SET_USER", payload: userObject });
   }
 
   const signOut = () => {
     setIsToken(window.localStorage.setItem("token", ""));
-    dispatch({type: "SET_USER", payload: null})
+    dispatch({ type: "SET_USER", payload: null });
   };
 
   const router = useRouter();
@@ -32,7 +32,7 @@ const Main = (props) => {
 
   let t = en;
 
-  switch(locale){
+  switch (locale) {
     case "ru":
       t = ru;
       break;
@@ -43,7 +43,6 @@ const Main = (props) => {
       t = cs;
       break;
   }
-
 
   useEffect(() => {
     /* glogal google*/
@@ -57,11 +56,11 @@ const Main = (props) => {
       size: "large",
     });
     setIsToken(window.localStorage.getItem("token"));
-    if(window.localStorage.getItem("token").length){
+    if (window.localStorage.getItem("token").length) {
       const userData = jwt_decode(window.localStorage.getItem("token"));
-      dispatch({type: "SET_USER", payload: userData})
+      dispatch({ type: "SET_USER", payload: userData });
     }
-  }, [isToken]); 
+  }, [isToken]);
 
   return (
     <main

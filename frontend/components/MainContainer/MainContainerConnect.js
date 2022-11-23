@@ -1,4 +1,4 @@
-import { changeStyle1, changeStyle2 } from "./redux/main-reducer";
+import { changeStyle1, changeStyle2 } from "../redux/main-reducer";
 import { connect } from "react-redux";
 import MainContainer from "./MainContainer";
 

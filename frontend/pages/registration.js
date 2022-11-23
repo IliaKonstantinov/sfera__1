@@ -1,19 +1,18 @@
-import MainContainerConnect from "../components/MainContainerConnect";
+import MainContainerConnect from "../components/MainContainer/MainContainerConnect";
 import { Provider } from "react-redux";
-import MainRegistration from "../components/MainRegistration";
+import MainRegistration from "../components/MainContainer/MainReg/MainRegistration";
 import store from "../components/redux/redux-store.js";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../translations";
 
 const registration = (props) => {
-
   const router = useRouter();
 
   const { locale } = router;
 
   let t = en;
 
-  switch(locale){
+  switch (locale) {
     case "ru":
       t = ru;
       break;

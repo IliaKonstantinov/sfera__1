@@ -1,8 +1,8 @@
 import { useForm } from "react-hook-form";
-import styles from "../styles/Home.module.css";
-import { LoginAPI } from "../pages/api/api";
+import styles from "../../../../styles/Login.module.css";
+import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
-import { cs, en, ru } from "../translations";
+import { cs, en, ru } from "../../../../translations";
 
 const Login = (props) => {
   const {
@@ -19,14 +19,13 @@ const Login = (props) => {
     });
   };
 
-  
   const router = useRouter();
 
   const { locale } = router;
 
   let t = en;
 
-  switch(locale){
+  switch (locale) {
     case "ru":
       t = ru;
       break;
@@ -40,8 +39,11 @@ const Login = (props) => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <div>
-        <input placeholder={t.email} {...register("email", { required: true })} />
+      <div className={styles.input}>
+        <input
+          placeholder={t.email}
+          {...register("email", { required: true })}
+        />
         {errors.email && errors.email.type == "required" && (
           <p className={styles.error}>{t.enterEmail}</p>
         )}
