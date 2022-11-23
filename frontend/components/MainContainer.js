@@ -2,7 +2,7 @@ import Head from "next/head";
 import A from "./A";
 import styles from "../styles/MainContainer.module.css";
 import { useRouter } from "next/router";
-import { en, ru } from "../translations";
+import { en, ru, cs } from "../translations";
 
 const MainContainer = (props) => {
   const onChangeStyles = () => {
@@ -25,6 +25,9 @@ const MainContainer = (props) => {
       break;
     case "en":
       t = en;
+      break;
+    case "cs":
+      t = cs;
       break;
   }
 
@@ -57,6 +60,7 @@ const MainContainer = (props) => {
         <div className={!props.toggleChangeStyle ? styles.locales : ''}>
           <button className={!props.toggleChangeStyle ? styles.locale1 : styles.locale} onClick={() => handleChangeLang("ru")}>Русский</button>
           <button className={!props.toggleChangeStyle ? styles.locale1 : styles.locale} onClick={() => handleChangeLang("en")}>English</button>
+          <button className={!props.toggleChangeStyle ? styles.locale1 : styles.locale} onClick={() => handleChangeLang("cs")}>Čeština</button>
         </div>
       </div>
       <div>{props.children}</div>

@@ -2,7 +2,7 @@ import styles from "../styles/Main.module.css";
 import { connect } from "react-redux";
 import RegForm from "./RegForm";
 import { useRouter } from "next/router";
-import { en, ru } from "../translations";
+import { cs, en, ru } from "../translations";
 
 const MainRegistration = (props) => {
   console.log(props);
@@ -19,6 +19,9 @@ const MainRegistration = (props) => {
       break;
     case "en":
       t = en;
+      break;
+    case "cs":
+      t = cs;
       break;
   }
 

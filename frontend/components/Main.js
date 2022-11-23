@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
-import { en, ru } from "../translations";
+import { cs, en, ru } from "../translations";
 
 const Main = (props) => {
   console.log(props);
@@ -38,6 +38,9 @@ const Main = (props) => {
       break;
     case "en":
       t = en;
+      break;
+    case "cs":
+      t = cs;
       break;
   }
 

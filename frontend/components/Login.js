@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import styles from "../styles/Home.module.css";
 import { LoginAPI } from "../pages/api/api";
 import { useRouter } from "next/router";
-import { en, ru } from "../translations";
+import { cs, en, ru } from "../translations";
 
 const Login = (props) => {
   const {
@@ -32,6 +32,9 @@ const Login = (props) => {
       break;
     case "en":
       t = en;
+      break;
+    case "cs":
+      t = cs;
       break;
   }
 

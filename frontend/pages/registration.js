@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import MainRegistration from "../components/MainRegistration";
 import store from "../components/redux/redux-store.js";
 import { useRouter } from "next/router";
-import { en, ru } from "../translations";
+import { cs, en, ru } from "../translations";
 
 const registration = (props) => {
 
@@ -19,6 +19,9 @@ const registration = (props) => {
       break;
     case "en":
       t = en;
+      break;
+    case "cs":
+      t = cs;
       break;
   }
 

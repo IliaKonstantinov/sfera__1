@@ -27,6 +27,8 @@ export const ru = {
 export const cs = {
   login: "Vejít do",
   registration: "Registrovat",
+  style: "Změnit téma",
+  signOut: "jít ven",
   email: "pošta",
   password: "Heslo",
   submit: "poslat",
