@@ -47,6 +47,7 @@ const MainContainer = (props) => {
       </Head>
       <header
         className={!props.toggleChangeStyle ? styles.nav : styles.nav_style1}
+        data-testid="main"
       >
         <div className={styles.link}>
           <A href="/" text={t.login}></A>

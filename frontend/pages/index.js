@@ -8,7 +8,7 @@ import { useEffect } from "react";
 export default function Home() {
   useEffect(() => {
     if (window.localStorage.getItem("token") === undefined) {
-      window.localStorage.setItem("token", "");
+      window.localStorage.setItem("token", null);
     }
   }, []);
   return (

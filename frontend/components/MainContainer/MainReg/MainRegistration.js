@@ -28,6 +28,7 @@ const MainRegistration = (props) => {
   return (
     <main
       className={!props.toggleChangeStyle ? styles.main_style1 : styles.main}
+      data-testid="registration"
     >
       <div className={styles.form_wrapper}>
         <div className={styles.text}>{t.registration}</div>

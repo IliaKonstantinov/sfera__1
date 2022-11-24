@@ -8,7 +8,7 @@ import { cs, en, ru } from "../../../translations";
 
 const Main = (props) => {
   //console.log(props);
-  const [isToken, setIsToken] = useState("");
+  const [isToken, setIsToken] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.mainPage.user);
   //console.log(user);
@@ -22,7 +22,7 @@ const Main = (props) => {
   }
 
   const signOut = () => {
-    setIsToken(window.localStorage.setItem("token", ""));
+    setIsToken(window.localStorage.setItem("token", null));
     dispatch({ type: "SET_USER", payload: null });
   };
 
@@ -45,6 +45,7 @@ const Main = (props) => {
   }
 
   useEffect(() => {
+    const google = {accounts: {id:{initialize(){},renderButton(){}}}}
     /* glogal google*/
     google.accounts.id.initialize({
       client_id:
@@ -56,7 +57,7 @@ const Main = (props) => {
       size: "large",
     });
     setIsToken(window.localStorage.getItem("token"));
-    if (window.localStorage.getItem("token").length) {
+    if (window.localStorage.getItem("token") !== null) {
       const userData = jwt_decode(window.localStorage.getItem("token"));
       dispatch({ type: "SET_USER", payload: userData });
     }

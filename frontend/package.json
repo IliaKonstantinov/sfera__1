@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watch"
+    "test": "jest --watchAll --coverage"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -25,11 +25,5 @@
   },
   "devDependencies": {
     "next-router-mock": "^0.8.0"
-  },
-  "jest": {
-    "globals":{
-      "google": {
-      }
-    }
   }
 }
