@@ -21,7 +21,8 @@
     "react-dom": "18.2.0",
     "react-hook-form": "^7.39.5",
     "react-redux": "^8.0.5",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "sass": "^1.56.1"
   },
   "devDependencies": {
     "next-router-mock": "^0.8.0"

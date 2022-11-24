@@ -1,0 +1,38 @@
+$bgStyle1: darkcyan;
+$bgStyle2: #ccc;
+$bgHover: #666;
+$colorTextBtn: #555;
+
+%tplLink {
+  text-decoration: none;
+  font-size: 20px;
+  padding: 3px 10px;
+}
+
+.link {
+    @extend %tplLink;
+    background-color: $bgStyle2;
+}
+  
+.link_style1 {
+    @extend %tplLink;
+    background-color: $bgStyle1;
+}
+
+.link_wrapper {
+  color: black;
+  &:hover{
+    color: $colorTextBtn;
+  };
+}
+
+.active {
+    color: black;
+  border: 2px solid black;
+  &:hover{
+    color: $colorTextBtn;
+    
+  };
+}
+
+
