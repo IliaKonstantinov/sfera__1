@@ -14,8 +14,18 @@
   background-color: #666;
 }
 
-.link {
+.link,
+.link_style1 {
   text-decoration: none;
-  color: grey;
   font-size: 20px;
+  color: black;
+  padding: 3px 10px;
+}
+
+.link_style1 {
+  background-color: darkcyan;
+}
+
+.link {
+  background-color: #ccc;
 }

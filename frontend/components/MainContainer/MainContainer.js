@@ -54,35 +54,53 @@ const MainContainer = (props) => {
           <A href="/registration" text={t.registration}></A>
         </div>
         <div className={styles.settings}>
-          <button onClick={onChangeStyles} className={styles.settings_style}>
+          <button
+            onClick={onChangeStyles}
+            className={
+              !props.toggleChangeStyle
+                ? styles.settings_style1
+                : styles.settings_style
+            }
+          >
             {t.style}
           </button>
-          <div className={!props.toggleChangeStyle ? styles.locales : ""}>
-            <button
-              className={
-                !props.toggleChangeStyle ? styles.locale1 : styles.locale
-              }
-              onClick={() => handleChangeLang("ru")}
-            >
-              Русский
-            </button>
-            <button
-              className={
-                !props.toggleChangeStyle ? styles.locale1 : styles.locale
-              }
-              onClick={() => handleChangeLang("en")}
-            >
-              English
-            </button>
-            <button
-              className={
-                !props.toggleChangeStyle ? styles.locale1 : styles.locale
-              }
-              onClick={() => handleChangeLang("cs")}
-            >
-              Čeština
-            </button>
-          </div>
+          <select
+            onChange={(e) => handleChangeLang(e.target.value)}
+            className={
+              !props.toggleChangeStyle ? styles.locales_sryle1 : styles.locales
+            }
+          >
+            <option value="ru">
+              {" "}
+              <button
+                className={
+                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
+                }
+              >
+                Русский
+              </button>
+            </option>
+            <option value="en">
+              {" "}
+              <button
+                className={
+                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
+                }
+              >
+                English
+              </button>
+            </option>
+            <option value="cs">
+              {" "}
+              <button
+                className={
+                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
+                }
+              >
+                Čeština
+              </button>
+            </option>
+          </select>
         </div>
       </header>
       <div>{props.children}</div>

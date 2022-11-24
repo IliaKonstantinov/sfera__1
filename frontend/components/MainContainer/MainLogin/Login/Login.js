@@ -68,14 +68,22 @@ const Login = (props) => {
         )}
       </div>
       <div>
-        <input type="submit" value={t.login} className={styles.input_submit} />
+        <input
+          type="submit"
+          value={t.login}
+          className={
+            !props.toggleChangeStyle
+              ? styles.input_submit_style1
+              : styles.input_submit
+          }
+        />
       </div>
     </form>
   );
 };
 
 let mapStateToProps = (state) => ({
-  //toggleChangeStyle: state.mainPage.toggleChangeStyle,
+  toggleChangeStyle: state.mainPage.toggleChangeStyle,
 });
 
 export default connect(mapStateToProps, {})(Login);

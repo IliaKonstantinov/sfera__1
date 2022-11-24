@@ -14,6 +14,7 @@
 .settings {
   width: 100%;
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
 }
 
@@ -23,19 +24,20 @@
   justify-content: space-between;
 }
 
-.settings_style {
+.settings_style,
+.settings_style1 {
   width: 100px;
   padding: 5px;
   margin: 10px;
   background-color: #ccc;
 }
-.settings_style:hover {
-  background-color: #888;
+
+.settings_style1 {
+  background-color: darkcyan;
 }
 
-.nav div,
-.nav_style1 div {
-  padding: 5px;
+.settings_style:hover {
+  background-color: #888;
 }
 
 .nav_style1 {
@@ -43,7 +45,14 @@
 }
 
 .locales {
+  display: flex;
   border: 1px solid #000;
+  margin: 10px;
+  background-color: #ccc;
+}
+
+.locales_sryle1 {
+  background-color: darkcyan;
 }
 
 .locale {
@@ -85,5 +94,31 @@
   .settings {
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 350px) {
+  .locales {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 300px) {
+  .link {
+    flex-direction: column;
+    align-items: center;
+    row-gap: 10px;
+  }
+
+  .nav,
+  .nav_style1 {
+    height: 150px;
+  }
+
+  .locale,
+  .locale1 {
+    margin: 0;
   }
 }

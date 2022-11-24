@@ -8,12 +8,12 @@ export const en = {
   submit: "submit",
   remember: "remember me",
   enterEmail: "Please enter you email",
-  enterPassword: "Please enter you Password"
-}
+  enterPassword: "Please enter you Password",
+};
 
 export const ru = {
   login: "Войти",
-  registration: "Зарегистрироваться",
+  registration: "Регистрация",
   style: "сменить тему",
   signOut: "выйти",
   email: "почта",
@@ -21,8 +21,8 @@ export const ru = {
   submit: "отправить",
   remember: "запомнить меня",
   enterEmail: "Пожалуйста, введите почту",
-  enterPassword: "Пожалуйста, введите пароль"
-}
+  enterPassword: "Пожалуйста, введите пароль",
+};
 
 export const cs = {
   login: "Vejít do",
@@ -34,5 +34,5 @@ export const cs = {
   submit: "poslat",
   remember: "Aby si mě pamatoval",
   enterEmail: "Zadejte prosím svůj email",
-  enterPassword: "Prosím, vložte heslo"
-}
+  enterPassword: "Prosím, vložte heslo",
+};
