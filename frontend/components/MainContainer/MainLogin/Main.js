@@ -7,11 +7,11 @@ import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../translations";
 
 const Main = (props) => {
-  console.log(props);
+  //console.log(props);
   const [isToken, setIsToken] = useState("");
   const dispatch = useDispatch();
   const user = useSelector((state) => state.mainPage.user);
-  console.log(user);
+  //console.log(user);
 
   function handleCallbackResponse(response) {
     console.log("Eccoded JWT ID token: " + response.credential);
@@ -69,8 +69,13 @@ const Main = (props) => {
       {user !== null ? (
         <div>
           <img scr={user.pictures} />
-          <h3>{user.name}</h3>
-          <button onClick={signOut}>{t.signOut}</button>
+          <h3 className={styles.profile_disc}>
+            <p className={styles.profile_name}>{user.name}</p>
+            <p className={styles.profile_email}>{user.email}</p>
+          </h3>
+          <button onClick={signOut} className={styles.profile_signout}>
+            {t.signOut}
+          </button>
         </div>
       ) : (
         <div className={styles.form_wrapper}>

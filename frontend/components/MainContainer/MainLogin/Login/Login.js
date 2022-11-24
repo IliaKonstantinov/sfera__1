@@ -3,6 +3,8 @@ import styles from "../../../../styles/Login.module.css";
 import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
+import jwt_decode from "jwt-decode";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 const Login = (props) => {
   const {
@@ -12,9 +14,15 @@ const Login = (props) => {
     formState: { errors },
   } = useForm();
 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.mainPage.user);
+
   const onSubmit = (e) => {
     LoginAPI.PostLogin(e).then((data) => {
       console.log("DATA LOGIN", data);
+      let userObjectLogin = jwt_decode(data.access_token);
+      console.log(userObjectLogin);
+      dispatch({ type: "SET_USER", payload: userObjectLogin });
     });
   };
 
@@ -65,4 +73,8 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+let mapStateToProps = (state) => ({
+  //toggleChangeStyle: state.mainPage.toggleChangeStyle,
+});
+
+export default connect(mapStateToProps, {})(Login);

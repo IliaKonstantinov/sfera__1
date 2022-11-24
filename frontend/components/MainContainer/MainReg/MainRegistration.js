@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../translations";
 
 const MainRegistration = (props) => {
-  console.log(props);
+  //console.log(props);
 
   const router = useRouter();
 
