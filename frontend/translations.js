@@ -9,6 +9,8 @@ export const en = {
   remember: "remember me",
   enterEmail: "Please enter you email",
   enterPassword: "Please enter you Password",
+  minLength: "Mail and password must not be shorter than 4 characters",
+  mailError: "Enter existing mail"
 };
 
 export const ru = {
@@ -22,6 +24,8 @@ export const ru = {
   remember: "запомнить меня",
   enterEmail: "Пожалуйста, введите почту",
   enterPassword: "Пожалуйста, введите пароль",
+  minLength: "Почта и пароль не должены быть короче 4-х символов",
+  mailError: "Введите существующую почту"
 };
 
 export const cs = {
@@ -35,4 +39,6 @@ export const cs = {
   remember: "Aby si mě pamatoval",
   enterEmail: "Zadejte prosím svůj email",
   enterPassword: "Prosím, vložte heslo",
+  minLength: "Email a heslo nesmí být kratší než 4 znaky",
+  mailError: "Zadejte existující poštu"
 };

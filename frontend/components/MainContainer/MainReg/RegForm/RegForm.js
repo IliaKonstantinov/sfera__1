@@ -18,6 +18,8 @@ export default function RegForm(props) {
       console.log("Response data", data);
 
       window.localStorage.setItem("token", data.access_token);
+      alert('Успешная регистрация!')
+      console.log(errors.email)
     });
   };
 
@@ -45,20 +47,36 @@ export default function RegForm(props) {
         <input
           placeholder={t.email}
           className={styles.input_text}
-          {...register("email", { required: true })}
+          {...register("email", { 
+              required: true, pattern: {
+                value: /@/,
+                message: t.mailError
+            }, minLength: {
+              value: 4, message: t.minLength
+            }
+          })}
         />
         {errors.email && errors.email.type == "required" && (
           <p className={styles.error}>{t.enterEmail}</p>
+        )}
+        {errors.email && errors.email?.message && (
+          <p className={styles.error}>{errors.email.message}</p>
         )}
       </div>
       <div>
         <input
           placeholder={t.password}
           className={styles.input_text}
-          {...register("password", { required: true })}
+          {...register("password", { required: true, minLength: {
+            value: 4,
+            message: t.minLength
+          } })}
         />
         {errors.password && errors.password.type == "required" && (
           <p className={styles.error}>{t.enterPassword}</p>
+        )}
+        {errors.password && errors.password?.message && (
+          <p className={styles.error}>{errors.password.message}</p>
         )}
       </div>
       <div>
