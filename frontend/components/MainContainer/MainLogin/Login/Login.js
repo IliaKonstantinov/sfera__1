@@ -20,6 +20,7 @@ const Login = (props) => {
   const onSubmit = (e) => {
     LoginAPI.PostLogin(e).then((data) => {
       console.log("DATA LOGIN", data);
+      localStorage.setItem("token", data.access_token);
       let userObjectLogin = jwt_decode(data.access_token);
       console.log(userObjectLogin);
       dispatch({ type: "SET_USER", payload: userObjectLogin });
