@@ -6,11 +6,7 @@ import store from "../components/redux/redux-store.js";
 import { useEffect } from "react";
 
 export default function Home() {
-  useEffect(() => {
-    if (window.localStorage.getItem("token") === undefined) {
-      window.localStorage.setItem("token", null);
-    }
-  }, []);
+
   return (
     <Provider store={store}>
       <MainContainerConnect
