@@ -70,35 +70,29 @@ const MainContainer = (props) => {
               !props.toggleChangeStyle ? styles.locales_sryle1 : styles.locales
             }
           >
-            <option value="ru">
-              {" "}
-              <button
-                className={
-                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
-                }
-              >
-                Русский
-              </button>
+            <option
+              value="ru"
+              className={
+                !props.toggleChangeStyle ? styles.locale1 : styles.locale
+              }
+            >
+              Русский
             </option>
-            <option value="en">
-              {" "}
-              <button
-                className={
-                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
-                }
-              >
-                English
-              </button>
+            <option
+              value="en"
+              className={
+                !props.toggleChangeStyle ? styles.locale1 : styles.locale
+              }
+            >
+              English
             </option>
-            <option value="cs">
-              {" "}
-              <button
-                className={
-                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
-                }
-              >
-                Čeština
-              </button>
+            <option
+              value="cs"
+              className={
+                !props.toggleChangeStyle ? styles.locale1 : styles.locale
+              }
+            >
+              Čeština
             </option>
           </select>
         </div>
