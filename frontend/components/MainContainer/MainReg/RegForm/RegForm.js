@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "../../../../styles/Home.module.css";
+import styles from "../../../../styles/RegForm.module.css";
 import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
@@ -41,9 +41,10 @@ export default function RegForm(props) {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <div>
+      <div className={styles.input}>
         <input
           placeholder={t.email}
+          className={styles.input_text}
           {...register("email", { required: true })}
         />
         {errors.email && errors.email.type == "required" && (
@@ -53,6 +54,7 @@ export default function RegForm(props) {
       <div>
         <input
           placeholder={t.password}
+          className={styles.input_text}
           {...register("password", { required: true })}
         />
         {errors.password && errors.password.type == "required" && (
@@ -60,7 +62,7 @@ export default function RegForm(props) {
         )}
       </div>
       <div>
-        <input type="submit" value={t.submit} />
+        <input type="submit" value={t.submit} className={styles.input_submit} />
       </div>
     </form>
   );

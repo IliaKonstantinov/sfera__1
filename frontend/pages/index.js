@@ -13,7 +13,12 @@ export default function Home() {
   }, []);
   return (
     <Provider store={store}>
-      <MainContainerConnect title="Login" className={styles.container}>
+      <MainContainerConnect
+        title={"Login"}
+        className={styles.container}
+        description={"Login page with google authorization"}
+        keywords={"Authorization, Google, Login, Signin"}
+      >
         <Main />
       </MainContainerConnect>
     </Provider>

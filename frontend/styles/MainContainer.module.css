@@ -17,6 +17,22 @@
   justify-content: space-around;
 }
 
+.settings {
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.settings_style {
+  width: 100px;
+  padding: 5px;
+  margin: 10px;
+  background-color: #ccc;
+}
+.settings_style:hover {
+  background-color: #888;
+}
+
 .nav div,
 .nav_style1 div {
   padding: 5px;
@@ -26,16 +42,13 @@
   background-color: #333;
 }
 
-.nav_style1 div {
-  border: 1px solid #999;
-}
-
 .locales {
   border: 1px solid #000;
 }
 
 .locale {
   color: #fff;
+  margin-left: 10px;
   border: none;
   background-color: inherit;
   cursor: pointer;
@@ -43,11 +56,12 @@
 }
 
 .locale:hover {
-  color: #fff305;
+  color: #888;
 }
 
 .locale1 {
   color: #000;
+  margin-left: 10px;
   border: none;
   background-color: inherit;
   cursor: pointer;
@@ -55,7 +69,7 @@
 }
 
 .locale1:hover {
-  color: #fff305;
+  color: #888;
 }
 
 @media (max-width: 600px) {
@@ -66,5 +80,10 @@
   align-items: center; */
     width: 100%;
     height: 100px;
+  }
+
+  .settings {
+    flex-direction: row;
+    justify-content: space-between;
   }
 }

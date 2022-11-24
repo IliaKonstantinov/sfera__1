@@ -26,7 +26,10 @@ const registration = (props) => {
 
   return (
     <Provider store={store}>
-      <MainContainerConnect title="Registration">
+      <MainContainerConnect
+        title={"Registration"}
+        description={"Registration page"}
+      >
         <MainRegistration />
       </MainContainerConnect>
     </Provider>

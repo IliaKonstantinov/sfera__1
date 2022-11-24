@@ -29,7 +29,7 @@ const MainRegistration = (props) => {
     <main
       className={!props.toggleChangeStyle ? styles.main_style1 : styles.main}
     >
-      <div>
+      <div className={styles.form_wrapper}>
         <div className={styles.text}>{t.registration}</div>
         <RegForm />
         <div id="singInDiv"></div>

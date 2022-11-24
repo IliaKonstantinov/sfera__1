@@ -39,7 +39,10 @@ const MainContainer = (props) => {
     <>
       <Head>
         <title>{props.title}</title>
-        <meta name="description" content="auth-project" />
+        <meta name="description" content={`Auth-project` + props.description} />
+        <meta name="robots" content="index, follow" />
+        <meta name="keywords" content={props.keywords || "Authorization"} />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <header
@@ -50,7 +53,9 @@ const MainContainer = (props) => {
           <A href="/registration" text={t.registration}></A>
         </div>
         <div className={styles.settings}>
-          <button onClick={onChangeStyles}>{t.style}</button>
+          <button onClick={onChangeStyles} className={styles.settings_style}>
+            {t.style}
+          </button>
           <div className={!props.toggleChangeStyle ? styles.locales : ""}>
             <button
               className={

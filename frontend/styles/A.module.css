@@ -1,9 +1,9 @@
 .link_wrapper {
-  background-color: #eee;
+  background-color: #ccc;
 }
 
 .active {
-  background-color: #333;
+  background-color: #111;
 }
 
 .link_wrapper:hover {
