@@ -50,7 +50,7 @@ server.post('/auth/register', (req, res) => {
 
 fs.readFile("./users.json", (err, data) => {  
     if (err) {
-      const status = 401
+      const status = 500
       const message = err
       res.status(status).json({status, message})
       return
@@ -66,7 +66,7 @@ fs.readFile("./users.json", (err, data) => {
     data.users.push({id: last_item_id + 1, email: email, password: password}); //add some data
     var writeData = fs.writeFile("./users.json", JSON.stringify(data), (err, result) => {  // WRITE
         if (err) {
-          const status = 401
+          const status = 500
           const message = err
           res.status(status).json({status, message})
           return
@@ -86,7 +86,7 @@ server.post('/auth/login', (req, res) => {
   console.log(req.body);
   const {email, password} = req.body;
   if (isAuthenticated({email, password}) === 0) {
-    const status = 401
+    const status = 402
     const message = 'Incorrect email or password'
     res.status(status).json({status, message})
     return
@@ -98,7 +98,7 @@ server.post('/auth/login', (req, res) => {
 
 server.use(/^(?!\/auth).*$/,  (req, res, next) => {
   if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
-    const status = 401
+    const status = 421
     const message = 'Error in authorization format'
     res.status(status).json({status, message})
     return
@@ -108,14 +108,14 @@ server.use(/^(?!\/auth).*$/,  (req, res, next) => {
      verifyTokenResult = verifyToken(req.headers.authorization.split(' ')[1]);
 
      if (verifyTokenResult instanceof Error) {
-       const status = 401
+       const status = 421
        const message = 'Access token not provided'
        res.status(status).json({status, message})
        return
      }
      next()
   } catch (err) {
-    const status = 401
+    const status = 421
     const message = 'Error access_token is revoked'
     res.status(status).json({status, message})
   }

@@ -9,8 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 function RegForm(props) {
-  let emailRef = useRef();
-  let passwordRef = useRef();
   const {
     register,
     handleSubmit,
@@ -18,21 +16,6 @@ function RegForm(props) {
     reset,
     formState: { errors },
   } = useForm();
-
-  const onSubmit = (e) => {
-    console.log("OnSubmit data", e);
-    LoginAPI.Registration(e)
-      .then((data) => {
-        console.log("Response data", data);
-        window.localStorage.setItem("token", data.access_token);
-        reset({
-          email: "",
-          password: "",
-        });
-        toast.success("Успешная регистрация!");
-      })
-      .catch((err) => toast.error(err.response.data.message));
-  };
 
   const router = useRouter();
 
@@ -52,11 +35,33 @@ function RegForm(props) {
       break;
   }
 
+  const onSubmit = (e) => {
+    console.log("OnSubmit data", e);
+    LoginAPI.Registration(e)
+      .then((data) => {
+        console.log("Response data", data);
+        window.localStorage.setItem("token", data.access_token);
+        reset({
+          email: "",
+          password: "",
+        });
+        toast.success(t.success);
+      })
+      .catch((err) => {
+        switch (err.response.data.status){
+          case 401:
+            toast.error(t.err401);
+            break;
+          default:
+            toast.error(err.response.data.message);
+        }
+      });
+  };
+
   return (
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.input}>
         <input
-          ref={emailRef}
           placeholder={t.email}
           className={styles.input_text}
           {...register("email", {
@@ -80,7 +85,6 @@ function RegForm(props) {
       </div>
       <div>
         <input
-          ref={passwordRef}
           placeholder={t.password}
           className={styles.input_text}
           {...register("password", {

@@ -28,7 +28,15 @@ const Login = (props) => {
         console.log(userObjectLogin);
         dispatch({ type: "SET_USER", payload: userObjectLogin });
       })
-      .catch((err) => toast.error(err.response.data.message));
+      .catch((err) => {
+        switch (err.response.data.status){
+          case 402:
+            toast.error(t.err402);
+            break;
+          default:
+            toast.error(err.response.data.message);
+        }
+      });
   };
 
   const router = useRouter();
