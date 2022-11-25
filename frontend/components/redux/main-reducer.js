@@ -5,7 +5,16 @@ const SET_USER = "SET_USER";
 let initialState = {
   style: "style1",
   toggleChangeStyle: false,
-  user: null
+  user: null,
+  stylesArray: [
+    { value: "style1", id: "1" },
+    { value: "style2", id: "2" },
+  ],
+  languagesArray: [
+    { value: "ru", id: "1", text: "Русский" },
+    { value: "en", id: "2", text: "English" },
+    { value: "cs", id: "3", text: "Čeština" },
+  ],
 };
 
 const mainReducer = (state = initialState, action) => {
@@ -17,7 +26,7 @@ const mainReducer = (state = initialState, action) => {
       return { ...state, style: "style1", toggleChangeStyle: false };
     }
     case SET_USER: {
-      return { ...state, user: action.payload }
+      return { ...state, user: action.payload };
     }
     default:
       return state;
@@ -33,7 +42,7 @@ export const changeStyle2 = () => ({
 
 export const setUser = () => ({
   type: "",
-  payload: ""
+  payload: "",
 });
 
 export default mainReducer;

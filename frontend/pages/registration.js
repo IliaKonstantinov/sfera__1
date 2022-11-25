@@ -1,9 +1,9 @@
-import MainContainerConnect from "../components/MainContainer/MainContainerConnect";
 import { Provider } from "react-redux";
 import MainRegistration from "../components/MainContainer/MainReg/MainRegistration";
 import store from "../components/redux/redux-store.js";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../translations";
+import MainContainer from "../components/MainContainer/MainContainer";
 
 const registration = (props) => {
   const router = useRouter();
@@ -26,12 +26,9 @@ const registration = (props) => {
 
   return (
     <Provider store={store}>
-      <MainContainerConnect
-        title={"Registration"}
-        description={"Registration page"}
-      >
+      <MainContainer title={"Registration"} description={"Registration page"}>
         <MainRegistration />
-      </MainContainerConnect>
+      </MainContainer>
     </Provider>
   );
 };

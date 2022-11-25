@@ -28,7 +28,7 @@ const Login = (props) => {
         console.log(userObjectLogin);
         dispatch({ type: "SET_USER", payload: userObjectLogin });
       })
-      .catch((err) => toast(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message));
   };
 
   const router = useRouter();
@@ -115,7 +115,6 @@ const Login = (props) => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
       />
     </form>
   );

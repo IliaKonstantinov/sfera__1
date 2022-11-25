@@ -29,9 +29,9 @@ function RegForm(props) {
           email: "",
           password: "",
         });
-        alert("Успешная регистрация!");
+        toast.success("Успешная регистрация!");
       })
-      .catch((err) => toast(err.response.data.message));
+      .catch((err) => toast.error(err.response.data.message));
   };
 
   const router = useRouter();
@@ -120,7 +120,6 @@ function RegForm(props) {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="dark"
       />
     </form>
   );

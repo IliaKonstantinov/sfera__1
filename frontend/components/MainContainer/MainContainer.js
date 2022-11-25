@@ -4,6 +4,8 @@ import styles from "../../styles/MainContainer.module.scss";
 import { useRouter } from "next/router";
 import { en, ru, cs } from "../../translations";
 import { useEffect, useRef } from "react";
+import { changeStyle1, changeStyle2 } from "../redux/main-reducer";
+import { connect } from "react-redux";
 
 const MainContainer = (props) => {
   const router = useRouter();
@@ -27,7 +29,7 @@ const MainContainer = (props) => {
   }
 
   const handleChangeLang = (lang) => {
-    if(window.localStorage.getItem('lang') !== "null"){
+    if (window.localStorage.getItem("lang") !== "null") {
       window.localStorage.setItem("lang", lang);
     }
     router.push(router.pathname, router.pathname, { locale: lang });
@@ -47,13 +49,13 @@ const MainContainer = (props) => {
   };
 
   useEffect(() => {
-    let lang = window.localStorage.getItem('lang');
-    let style = window.localStorage.getItem('style');
-    if(lang !== "null"){
+    let lang = window.localStorage.getItem("lang");
+    let style = window.localStorage.getItem("style");
+    if (lang !== "null") {
       handleChangeLang(lang);
       langSelect.current.value = lang;
     }
-    if(style !== "null"){
+    if (style !== "null") {
       handleChangeStyle(style);
       styleSelect.current.value = style;
     }
@@ -85,12 +87,15 @@ const MainContainer = (props) => {
             }
             ref={styleSelect}
           >
-            <option value="style1" className={styles.settings_style}>
-              {t.style} 1
-            </option>
-            <option value="style2" className={styles.settings_style1}>
-              {t.style} 2
-            </option>
+            {props.stylesArray.map((st) => (
+              <option
+                value={st.value}
+                className={styles.settings_style}
+                key={st.id}
+              >
+                {t.style} {st.id}
+              </option>
+            ))}
           </select>
 
           <select
@@ -100,30 +105,17 @@ const MainContainer = (props) => {
             }
             ref={langSelect}
           >
-            <option
-              value="ru"
-              className={
-                !props.toggleChangeStyle ? styles.locale1 : styles.locale
-              }
-            >
-              Русский
-            </option>
-            <option
-              value="en"
-              className={
-                !props.toggleChangeStyle ? styles.locale1 : styles.locale
-              }
-            >
-              English
-            </option>
-            <option
-              value="cs"
-              className={
-                !props.toggleChangeStyle ? styles.locale1 : styles.locale
-              }
-            >
-              Čeština
-            </option>
+            {props.languagesArray.map((st) => (
+              <option
+                value={st.value}
+                className={
+                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
+                }
+                key={st.id}
+              >
+                {st.text}
+              </option>
+            ))}
           </select>
         </div>
       </header>
@@ -132,4 +124,14 @@ const MainContainer = (props) => {
   );
 };
 
-export default MainContainer;
+let mapStateToProps = (state) => ({
+  style: state.mainPage.style,
+  stylesArray: state.mainPage.stylesArray,
+  toggleChangeStyle: state.mainPage.toggleChangeStyle,
+  languagesArray: state.mainPage.languagesArray,
+});
+
+export default connect(mapStateToProps, {
+  changeStyle1,
+  changeStyle2,
+})(MainContainer);
