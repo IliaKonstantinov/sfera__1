@@ -1,7 +1,7 @@
 export const en = {
   login: "Log in",
   registration: "Registration",
-  style: "change style",
+  style: "Style",
   signOut: "sign out",
   email: "email",
   password: "password",
@@ -10,13 +10,13 @@ export const en = {
   enterEmail: "Please enter you email",
   enterPassword: "Please enter you Password",
   minLength: "Mail and password must not be shorter than 4 characters",
-  mailError: "Enter existing mail"
+  mailError: "Enter existing mail",
 };
 
 export const ru = {
   login: "Войти",
   registration: "Регистрация",
-  style: "сменить тему",
+  style: "Стиль",
   signOut: "выйти",
   email: "почта",
   password: "пароль",
@@ -25,13 +25,13 @@ export const ru = {
   enterEmail: "Пожалуйста, введите почту",
   enterPassword: "Пожалуйста, введите пароль",
   minLength: "Почта и пароль не должены быть короче 4-х символов",
-  mailError: "Введите существующую почту"
+  mailError: "Введите существующую почту",
 };
 
 export const cs = {
   login: "Vejít do",
   registration: "Registrovat",
-  style: "Změnit téma",
+  style: "Téma",
   signOut: "jít ven",
   email: "pošta",
   password: "Heslo",
@@ -40,5 +40,5 @@ export const cs = {
   enterEmail: "Zadejte prosím svůj email",
   enterPassword: "Prosím, vložte heslo",
   minLength: "Email a heslo nesmí být kratší než 4 znaky",
-  mailError: "Zadejte existující poštu"
+  mailError: "Zadejte existující poštu",
 };

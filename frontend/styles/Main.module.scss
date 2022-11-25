@@ -11,7 +11,8 @@
 }
 
 %btnSignout {
-  padding: 2px 20px;
+  color: $textColor;
+  padding: 10px 20px;
   margin-top: 10px;
 }
 
@@ -29,7 +30,7 @@
 }
 
 .profile_disc {
-  color: #333;
+  color: $textColor;
 }
 
 .profile_name {

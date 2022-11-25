@@ -35,6 +35,18 @@ const MainContainer = (props) => {
     router.push("/", "/", { locale: lang });
   };
 
+  const handleChangeStyle = (style) => {
+    switch (style) {
+      case "style1":
+        console.log("STYLE 1");
+        props.changeStyle2();
+        break;
+      case "style2":
+        console.log("STYLE 2");
+        props.changeStyle1();
+    }
+  };
+
   return (
     <>
       <Head>
@@ -54,16 +66,20 @@ const MainContainer = (props) => {
           <A href="/registration" text={t.registration}></A>
         </div>
         <div className={styles.settings}>
-          <button
-            onClick={onChangeStyles}
+          <select
+            onChange={(e) => handleChangeStyle(e.target.value)}
             className={
-              !props.toggleChangeStyle
-                ? styles.settings_style1
-                : styles.settings_style
+              !props.toggleChangeStyle ? styles.locales_sryle1 : styles.locales
             }
           >
-            {t.style}
-          </button>
+            <option value="style1" className={styles.settings_style}>
+              {t.style} 1
+            </option>
+            <option value="style2" className={styles.settings_style1}>
+              {t.style} 2
+            </option>
+          </select>
+
           <select
             onChange={(e) => handleChangeLang(e.target.value)}
             className={
