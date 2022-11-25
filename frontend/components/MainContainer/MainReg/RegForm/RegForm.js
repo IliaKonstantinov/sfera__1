@@ -4,12 +4,16 @@ import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
 import { connect, useDispatch, useSelector } from "react-redux";
+import { useRef } from "react";
 
 function RegForm(props) {
+  let emailRef = useRef();
+  let passwordRef = useRef();
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -17,10 +21,12 @@ function RegForm(props) {
     console.log("OnSubmit data", e);
     LoginAPI.Registration(e).then((data) => {
       console.log("Response data", data);
-
       window.localStorage.setItem("token", data.access_token);
+      reset({
+        email:"",
+        password:""
+      })
       alert('Успешная регистрация!')
-      console.log(errors.email)
     });
   };
 
@@ -46,6 +52,7 @@ function RegForm(props) {
     <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
       <div className={styles.input}>
         <input
+          ref={emailRef}
           placeholder={t.email}
           className={styles.input_text}
           {...register("email", { 
@@ -66,12 +73,14 @@ function RegForm(props) {
       </div>
       <div>
         <input
+          ref={passwordRef}
           placeholder={t.password}
           className={styles.input_text}
           {...register("password", { required: true, minLength: {
             value: 4,
             message: t.minLength
           } })}
+          type="password"
         />
         {errors.password && errors.password.type == "required" && (
           <p className={styles.error}>{t.enterPassword}</p>

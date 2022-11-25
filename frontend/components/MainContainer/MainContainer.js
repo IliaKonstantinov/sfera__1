@@ -3,9 +3,12 @@ import A from "../A";
 import styles from "../../styles/MainContainer.module.scss";
 import { useRouter } from "next/router";
 import { en, ru, cs } from "../../translations";
+import { useEffect, useRef } from "react";
 
 const MainContainer = (props) => {
   const router = useRouter();
+  let langSelect = useRef();
+  let styleSelect = useRef();
 
   const { locale } = router;
 
@@ -24,10 +27,14 @@ const MainContainer = (props) => {
   }
 
   const handleChangeLang = (lang) => {
-    router.push("/", "/", { locale: lang });
+    if(window.localStorage.getItem('lang') !== "null"){
+      window.localStorage.setItem("lang", lang);
+    }
+    router.push(router.pathname, router.pathname, { locale: lang });
   };
 
   const handleChangeStyle = (style) => {
+    window.localStorage.setItem("style", style);
     switch (style) {
       case "style1":
         console.log("STYLE 1");
@@ -38,6 +45,19 @@ const MainContainer = (props) => {
         props.changeStyle1();
     }
   };
+
+  useEffect(() => {
+    let lang = window.localStorage.getItem('lang');
+    let style = window.localStorage.getItem('style');
+    if(lang !== "null"){
+      handleChangeLang(lang);
+      langSelect.current.value = lang;
+    }
+    if(style !== "null"){
+      handleChangeStyle(style);
+      styleSelect.current.value = style;
+    }
+  }, []);
 
   return (
     <>
@@ -63,6 +83,7 @@ const MainContainer = (props) => {
             className={
               !props.toggleChangeStyle ? styles.locales_sryle1 : styles.locales
             }
+            ref={styleSelect}
           >
             <option value="style1" className={styles.settings_style}>
               {t.style} 1
@@ -77,6 +98,7 @@ const MainContainer = (props) => {
             className={
               !props.toggleChangeStyle ? styles.locales_sryle1 : styles.locales
             }
+            ref={langSelect}
           >
             <option
               value="ru"

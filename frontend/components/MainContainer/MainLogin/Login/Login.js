@@ -75,6 +75,7 @@ const Login = (props) => {
             value: 4,
             message: t.minLength
           } })}
+          type="password"
         />
         {errors.password && errors.password.type == "required" && (
           <p className={styles.error}>{t.enterPassword}</p>
