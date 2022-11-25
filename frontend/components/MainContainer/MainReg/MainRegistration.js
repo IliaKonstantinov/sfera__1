@@ -1,4 +1,4 @@
-import styles from "../../../styles/Main.module.css";
+import styles from "../../../styles/Main.module.scss";
 import { connect } from "react-redux";
 import RegForm from "./RegForm/RegForm";
 import { useRouter } from "next/router";

@@ -1,5 +1,6 @@
-.nav,
-.nav_style1 {
+@import "changeStyleParams.scss";
+
+%tplNav {
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -7,52 +8,70 @@
   align-items: center;
   width: 100%;
   height: 100px;
-  background-color: antiquewhite;
 }
 
-.link,
-.settings {
+%tplFlex {
   width: 100%;
   display: flex;
+}
+
+%tplLocales {
+  display: flex;
+  border: 1px solid #000;
+  margin: 10px;
+}
+
+%tplSettingsStyle {
+  width: 100px;
+  padding: 5px;
+  margin: 10px;
+  &:hover {
+    background-color: #888;
+  }
+}
+
+.nav {
+  @extend %tplNav;
+  background-color: $bgNavStyle1;
+}
+
+.nav_style1 {
+  @extend %tplNav;
+  background-color: $bgNavStyle2;
+}
+
+.link {
+  @extend %tplFlex;
   flex-direction: row;
   justify-content: space-around;
 }
 
 .settings {
+  @extend %tplFlex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: space-between;
 }
 
-.settings_style,
-.settings_style1 {
-  width: 100px;
-  padding: 5px;
-  margin: 10px;
-  background-color: #ccc;
+.settings_style
+ {
+  @extend %tplSettingsStyle;
+  background-color: $bgBtnStyle2;
 }
 
 .settings_style1 {
-  background-color: darkcyan;
+  @extend %tplSettingsStyle;
+  background-color: $bgBtnStyle1;
 }
 
-.settings_style:hover {
-  background-color: #888;
-}
-
-.nav_style1 {
-  background-color: #333;
-}
-
-.locales, .locales_sryle1 {
-  display: flex;
-  border: 1px solid #000;
-  margin: 10px;
-  background-color: #ccc;
+.locales {
+  @extend %tplLocales;
+  background-color: $bgBtnStyle2;
 }
 
 .locales_sryle1 {
-  background-color: darkcyan;
+  @extend %tplLocales;
+  background-color: $bgBtnStyle1;
 }
 
 .locale {
@@ -62,10 +81,9 @@
   background-color: inherit;
   cursor: pointer;
   transition: color 0.3s ease;
-}
-
-.locale:hover {
-  color: #888;
+  &:hover {
+    color: #888;
+  }
 }
 
 .locale1 {
@@ -75,11 +93,11 @@
   background-color: inherit;
   cursor: pointer;
   transition: color 0.3s ease;
+  &:hover {
+    color: #888;
+  }
 }
 
-.locale1:hover {
-  color: #888;
-}
 
 @media (max-width: 600px) {
   .nav,

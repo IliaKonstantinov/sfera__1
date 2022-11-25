@@ -1,10 +1,11 @@
 import { useForm } from "react-hook-form";
-import styles from "../../../../styles/RegForm.module.css";
+import styles from "../../../../styles/RegForm.module.scss";
 import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
+import { connect, useDispatch, useSelector } from "react-redux";
 
-export default function RegForm(props) {
+function RegForm(props) {
   const {
     register,
     handleSubmit,
@@ -80,8 +81,19 @@ export default function RegForm(props) {
         )}
       </div>
       <div>
-        <input type="submit" value={t.submit} className={styles.input_submit} />
+        <input type="submit" value={t.submit} className={
+            !props.toggleChangeStyle
+              ? styles.input_submit_style1
+              : styles.input_submit
+          } />
       </div>
     </form>
   );
 }
+
+
+let mapStateToProps = (state) => ({
+  toggleChangeStyle: state.mainPage.toggleChangeStyle,
+});
+
+export default connect(mapStateToProps, {})(RegForm);

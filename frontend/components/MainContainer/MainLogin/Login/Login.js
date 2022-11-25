@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import styles from "../../../../styles/Login.module.css";
+import styles from "../../../../styles/Login.module.scss";
 import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";

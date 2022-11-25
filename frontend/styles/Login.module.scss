@@ -1,0 +1,40 @@
+@import "changeStyleParams.scss";
+
+%tplInput {
+  padding: 2px 20px;
+  margin-top: 10px;
+}
+
+%tplInputSubmit {
+  cursor: pointer;
+  &:hover {
+    background-color: #888;
+  }
+}
+
+
+.input_text{
+  @extend %tplInput;
+}
+.input_submit {
+  @extend %tplInput;
+}
+.input_submit_style1 {
+  @extend %tplInput;
+}
+.error {
+  font-size: 10px;
+  color: $errorTextColor;
+}
+
+.input_submit {
+  @extend %tplInputSubmit;
+  background-color: $bgBtnStyle2;
+
+
+}
+
+.input_submit_style1 {
+  @extend %tplInputSubmit;
+  background-color: $bgBtnStyle1;
+}

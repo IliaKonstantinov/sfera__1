@@ -1,16 +1,28 @@
-.main,
-.main_style1 {
+@import "changeStyleParams.scss";
+
+%tplMain {
   height: 100vh;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: antiquewhite;
+}
+
+%btnSignout {
+  padding: 2px 20px;
+  margin-top: 10px;
+}
+
+.main
+ {
+  @extend %tplMain;
+  background-color: $bgMainStyle1;
 }
 
 .main_style1 {
-  background-color: #999;
+  @extend %tplMain;
+  background-color: $bgMainStyle2;
   font-family: "Roboto", sans-serif;
 }
 
@@ -28,12 +40,15 @@
   margin-bottom: 10px;
 }
 
-.profile_signout {
-  padding: 2px 20px;
-  margin-top: 10px;
-  background-color: #ccc;
+.profile_signout{
+  @extend %btnSignout;
+  background-color: $bgBtnStyle2;
 }
 
+.profile_signout_style1{
+  @extend %btnSignout;
+  background-color: $bgBtnStyle1;
+}
 .form_wrapper {
   text-align: center;
   min-height: 200px;

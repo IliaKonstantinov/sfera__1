@@ -1,4 +1,4 @@
-import styles from "../../../styles/Main.module.css";
+import styles from "../../../styles/Main.module.scss";
 import Login from "./Login/Login";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
@@ -74,7 +74,7 @@ const Main = (props) => {
             <p className={styles.profile_name}>{user.name}</p>
             <p className={styles.profile_email}>{user.email}</p>
           </h3>
-          <button onClick={signOut} className={styles.profile_signout}>
+          <button onClick={signOut} className={!props.toggleChangeStyle ? styles.profile_signout_style1 : styles.profile_signout}>
             {t.signOut}
           </button>
         </div>

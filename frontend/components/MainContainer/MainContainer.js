@@ -1,6 +1,6 @@
 import Head from "next/head";
 import A from "../A";
-import styles from "../../styles/MainContainer.module.css";
+import styles from "../../styles/MainContainer.module.scss";
 import { useRouter } from "next/router";
 import { en, ru, cs } from "../../translations";
 

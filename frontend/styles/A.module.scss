@@ -1,38 +1,32 @@
-$bgStyle1: darkcyan;
-$bgStyle2: #ccc;
-$bgHover: #666;
-$colorTextBtn: #555;
+@import "changeStyleParams.scss";
 
 %tplLink {
   text-decoration: none;
   font-size: 20px;
   padding: 3px 10px;
+  &:hover {
+    background-color: #888;
+  }
 }
 
 .link {
     @extend %tplLink;
-    background-color: $bgStyle2;
+    background-color: $bgBtnStyle2;
+
 }
   
 .link_style1 {
     @extend %tplLink;
-    background-color: $bgStyle1;
+    background-color: $bgBtnStyle1;
 }
 
 .link_wrapper {
   color: black;
-  &:hover{
-    color: $colorTextBtn;
-  };
 }
 
 .active {
     color: black;
-  border: 2px solid black;
-  &:hover{
-    color: $colorTextBtn;
-    
-  };
+  border: 1px solid $activeColorBorder;
 }
 
 
