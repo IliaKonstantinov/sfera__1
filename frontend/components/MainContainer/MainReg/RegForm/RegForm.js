@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
 import { connect, useDispatch, useSelector } from "react-redux";
 import { useRef } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function RegForm(props) {
   let emailRef = useRef();
@@ -19,15 +21,17 @@ function RegForm(props) {
 
   const onSubmit = (e) => {
     console.log("OnSubmit data", e);
-    LoginAPI.Registration(e).then((data) => {
-      console.log("Response data", data);
-      window.localStorage.setItem("token", data.access_token);
-      reset({
-        email:"",
-        password:""
+    LoginAPI.Registration(e)
+      .then((data) => {
+        console.log("Response data", data);
+        window.localStorage.setItem("token", data.access_token);
+        reset({
+          email: "",
+          password: "",
+        });
+        alert("Успешная регистрация!");
       })
-      alert('Успешная регистрация!')
-    });
+      .catch((err) => toast(err.response.data.message));
   };
 
   const router = useRouter();
@@ -55,13 +59,16 @@ function RegForm(props) {
           ref={emailRef}
           placeholder={t.email}
           className={styles.input_text}
-          {...register("email", { 
-              required: true, pattern: {
-                value: /@/,
-                message: t.mailError
-            }, minLength: {
-              value: 4, message: t.minLength
-            }
+          {...register("email", {
+            required: true,
+            pattern: {
+              value: /@/,
+              message: t.mailError,
+            },
+            minLength: {
+              value: 4,
+              message: t.minLength,
+            },
           })}
         />
         {errors.email && errors.email.type == "required" && (
@@ -76,10 +83,13 @@ function RegForm(props) {
           ref={passwordRef}
           placeholder={t.password}
           className={styles.input_text}
-          {...register("password", { required: true, minLength: {
-            value: 4,
-            message: t.minLength
-          } })}
+          {...register("password", {
+            required: true,
+            minLength: {
+              value: 4,
+              message: t.minLength,
+            },
+          })}
           type="password"
         />
         {errors.password && errors.password.type == "required" && (
@@ -90,16 +100,31 @@ function RegForm(props) {
         )}
       </div>
       <div>
-        <input type="submit" value={t.submit} className={
+        <input
+          type="submit"
+          value={t.submit}
+          className={
             !props.toggleChangeStyle
               ? styles.input_submit_style1
               : styles.input_submit
-          } />
+          }
+        />
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </form>
   );
 }
-
 
 let mapStateToProps = (state) => ({
   toggleChangeStyle: state.mainPage.toggleChangeStyle,

@@ -15,7 +15,6 @@ export const LoginAPI = {
   PostLogin(dataPost) {
     return instance
       .post(`login/`, { ...dataPost })
-
       .then((response) => response.data);
   },
   Registration(dataPost) {

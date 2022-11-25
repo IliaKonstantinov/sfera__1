@@ -5,6 +5,8 @@ import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
 import jwt_decode from "jwt-decode";
 import { connect, useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = (props) => {
   const {
@@ -18,13 +20,15 @@ const Login = (props) => {
   const user = useSelector((state) => state.mainPage.user);
 
   const onSubmit = (e) => {
-    LoginAPI.PostLogin(e).then((data) => {
-      console.log("DATA LOGIN", data);
-      localStorage.setItem("token", data.access_token);
-      let userObjectLogin = jwt_decode(data.access_token);
-      console.log(userObjectLogin);
-      dispatch({ type: "SET_USER", payload: userObjectLogin });
-    });
+    LoginAPI.PostLogin(e)
+      .then((data) => {
+        console.log("DATA LOGIN", data);
+        localStorage.setItem("token", data.access_token);
+        let userObjectLogin = jwt_decode(data.access_token);
+        console.log(userObjectLogin);
+        dispatch({ type: "SET_USER", payload: userObjectLogin });
+      })
+      .catch((err) => toast(err.response.data.message));
   };
 
   const router = useRouter();
@@ -51,13 +55,16 @@ const Login = (props) => {
         <input
           placeholder={t.email}
           className={styles.input_text}
-          {...register("email", { 
-              required: true, pattern: {
-                value: /@/,
-                message: t.mailError
-            }, minLength: {
-              value: 4, message: t.minLength
-            }
+          {...register("email", {
+            required: true,
+            pattern: {
+              value: /@/,
+              message: t.mailError,
+            },
+            minLength: {
+              value: 4,
+              message: t.minLength,
+            },
           })}
         />
         {errors.email && errors.email.type == "required" && (
@@ -71,10 +78,13 @@ const Login = (props) => {
         <input
           placeholder={t.password}
           className={styles.input_text}
-          {...register("password", { required: true, minLength: {
-            value: 4,
-            message: t.minLength
-          } })}
+          {...register("password", {
+            required: true,
+            minLength: {
+              value: 4,
+              message: t.minLength,
+            },
+          })}
           type="password"
         />
         {errors.password && errors.password.type == "required" && (
@@ -95,6 +105,18 @@ const Login = (props) => {
           }
         />
       </div>
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </form>
   );
 };
