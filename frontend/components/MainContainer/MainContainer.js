@@ -5,14 +5,6 @@ import { useRouter } from "next/router";
 import { en, ru, cs } from "../../translations";
 
 const MainContainer = (props) => {
-  const onChangeStyles = () => {
-    if (!props.toggleChangeStyle) {
-      props.changeStyle1();
-    } else {
-      props.changeStyle2();
-    }
-  };
-
   const router = useRouter();
 
   const { locale } = router;
