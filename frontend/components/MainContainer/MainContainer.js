@@ -69,7 +69,7 @@ const MainContainer = (props) => {
         <meta name="robots" content="index, follow" />
         <meta name="keywords" content={props.keywords || "Authorization"} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <header
         className={!props.toggleChangeStyle ? styles.nav : styles.nav_style1}
