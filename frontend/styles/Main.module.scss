@@ -7,6 +7,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: $textColor;
 }
 
 %btnSignout {
@@ -14,15 +15,16 @@
   margin-top: 10px;
 }
 
-.main
- {
+.main {
   @extend %tplMain;
   background-color: $bgMainStyle1;
+  background: $bgMainGredientStyle1;
 }
 
 .main_style1 {
   @extend %tplMain;
-  background-color: $bgMainStyle2;
+  background: $bgMainStyle2;
+  background: $bgMainGredientStyle2;
   font-family: "Roboto", sans-serif;
 }
 
@@ -40,14 +42,14 @@
   margin-bottom: 10px;
 }
 
-.profile_signout{
-  @extend %btnSignout;
-  background-color: $bgBtnStyle2;
-}
-
-.profile_signout_style1{
+.profile_signout {
   @extend %btnSignout;
   background-color: $bgBtnStyle1;
+}
+
+.profile_signout_style1 {
+  @extend %btnSignout;
+  background-color: $bgBtnStyle2;
 }
 .form_wrapper {
   text-align: center;

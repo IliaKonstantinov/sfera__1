@@ -6,14 +6,14 @@
 }
 
 %tplInputSubmit {
+  color: $textColor;
   cursor: pointer;
   &:hover {
-    background-color: #888;
+    background-color: rgba(61, 61, 61, 0.6);
   }
 }
 
-
-.input_text{
+.input_text {
   @extend %tplInput;
 }
 .input_submit {
@@ -29,12 +29,10 @@
 
 .input_submit {
   @extend %tplInputSubmit;
-  background-color: $bgBtnStyle2;
-
-
+  background-color: $bgBtnStyle1;
 }
 
 .input_submit_style1 {
   @extend %tplInputSubmit;
-  background-color: $bgBtnStyle1;
+  background-color: $bgBtnStyle2;
 }

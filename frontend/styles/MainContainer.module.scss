@@ -19,25 +19,29 @@
   display: flex;
   border: 1px solid #000;
   margin: 10px;
+  color: $textColor;
 }
 
 %tplSettingsStyle {
+  color: $textColor;
   width: 100px;
   padding: 5px;
   margin: 10px;
   &:hover {
-    background-color: #888;
+    background-color: rgba(61, 61, 61, 0.6);
   }
 }
 
 .nav {
   @extend %tplNav;
-  background-color: $bgNavStyle1;
+  background: $bgNavStyle2;
+  background: $bgNavGredientStyle2;
 }
 
 .nav_style1 {
   @extend %tplNav;
-  background-color: $bgNavStyle2;
+  background: $bgNavStyle1;
+  background: $bgNavGredientStyle1;
 }
 
 .link {
@@ -53,25 +57,24 @@
   justify-content: space-between;
 }
 
-.settings_style
- {
+.settings_style {
   @extend %tplSettingsStyle;
-  background-color: $bgBtnStyle2;
+  background-color: $bgBtnStyle1;
 }
 
 .settings_style1 {
   @extend %tplSettingsStyle;
-  background-color: $bgBtnStyle1;
+  background-color: $bgBtnStyle2;
 }
 
 .locales {
   @extend %tplLocales;
-  background-color: $bgBtnStyle2;
+  background-color: $bgBtnStyle1;
 }
 
 .locales_sryle1 {
   @extend %tplLocales;
-  background-color: $bgBtnStyle1;
+  background-color: $bgBtnStyle2;
 }
 
 .locale {
@@ -82,7 +85,7 @@
   cursor: pointer;
   transition: color 0.3s ease;
   &:hover {
-    color: #888;
+    color: rgba(61, 61, 61, 0.6);
   }
 }
 
@@ -94,10 +97,9 @@
   cursor: pointer;
   transition: color 0.3s ease;
   &:hover {
-    color: #888;
+    color: rgba(61, 61, 61, 0.6);
   }
 }
-
 
 @media (max-width: 600px) {
   .nav,

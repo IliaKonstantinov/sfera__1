@@ -1,10 +1,56 @@
-$bgBtnStyle1: darkcyan;
-$bgBtnStyle2: #ccc;
+/*General style*/
+
 $bgHover: #666;
 $colorTextBtn: #555;
 $activeColorBorder: black;
+$textColor: #ccc;
 $errorTextColor: red;
-$bgMainStyle1: antiquewhite;
-$bgMainStyle2: #999;
-$bgNavStyle1: antiquewhite;
-$bgNavStyle2: #333;
+
+/*Style1*/
+
+/*Button Background*/
+$bgBtnStyle1: rgba(105, 105, 81, 0.4);
+
+/*Main Background*/
+$bgMainStyle1: rgb(34, 193, 195);
+$bgMainGredientStyle1: linear-gradient(
+  0deg,
+  rgba(34, 193, 195, 1) 0%,
+  rgba(253, 187, 45, 1) 100%
+);
+
+/*Header Navigator Background*/
+$bgNavStyle1: rgb(0, 0, 0);
+$bgNavGredientStyle1: linear-gradient(
+  25deg,
+  rgba(0, 0, 0, 1) 0%,
+  rgba(153, 153, 153, 1) 70%,
+  rgba(255, 255, 255, 1) 100%
+);
+
+/*Style2*/
+
+/*Button Background*/
+$bgBtnStyle2: rgba(87, 115, 168, 0.3);
+
+/*Main Background*/
+$bgMainStyle2: rgb(2, 0, 36);
+$bgMainGredientStyle2: radial-gradient(
+  circle,
+  rgba(2, 0, 36, 1) 0%,
+  rgba(9, 9, 121, 1) 55%,
+  rgba(0, 212, 255, 1) 100%
+);
+
+/*Header Navigator Background*/
+$bgNavStyle2: rgb(119, 119, 119);
+$bgNavGredientStyle2: linear-gradient(
+  90deg,
+  rgba(119, 119, 119, 1) 0%,
+  rgba(255, 255, 255, 1) 50%,
+  rgba(119, 119, 119, 1) 100%
+);
+/*
+#00d4ff
+#090979
+#020024 */
