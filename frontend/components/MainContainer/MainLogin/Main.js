@@ -45,8 +45,8 @@ const Main = (props) => {
   }
 
   useEffect(() => {
+    /* glogal google*/
     try {
-      /* glogal google*/
       google.accounts.id.initialize({
         client_id:
           "477480946204-rpt4a6fum1v8jh8banbdrtonp1g5ioa0.apps.googleusercontent.com",
@@ -57,8 +57,8 @@ const Main = (props) => {
         size: "large",
       });
       setIsToken(window.localStorage.getItem("token"));
-      console.log("localStorage get", window.localStorage.getItem("token"));
-      if (window.localStorage.getItem("token") !== null && window.localStorage.getItem("token") !== "null") {
+      console.log(window.localStorage.getItem("token"));
+      if (window.localStorage.getItem("token") !== "null") {
         const userData = jwt_decode(window.localStorage.getItem("token"));
         dispatch({ type: "SET_USER", payload: userData });
       }
