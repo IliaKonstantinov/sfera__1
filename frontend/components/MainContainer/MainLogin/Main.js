@@ -58,7 +58,10 @@ const Main = (props) => {
       });
       setIsToken(window.localStorage.getItem("token"));
       console.log(window.localStorage.getItem("token"));
-      if (window.localStorage.getItem("token") !== "null") {
+      if (
+        window.localStorage.getItem("token") !== "null" &&
+        window.localStorage.getItem("token") !== null
+      ) {
         const userData = jwt_decode(window.localStorage.getItem("token"));
         dispatch({ type: "SET_USER", payload: userData });
       }
