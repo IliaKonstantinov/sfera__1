@@ -45,21 +45,25 @@ const Main = (props) => {
   }
 
   useEffect(() => {
-    /* glogal google*/
-    google.accounts.id.initialize({
-      client_id:
-        "477480946204-rpt4a6fum1v8jh8banbdrtonp1g5ioa0.apps.googleusercontent.com",
-      callback: handleCallbackResponse,
-    });
-    google.accounts.id.renderButton(document.getElementById("singInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
-    setIsToken(window.localStorage.getItem("token"));
-    console.log(window.localStorage.getItem("token"))
-    if (window.localStorage.getItem("token") !== "null") {
-      const userData = jwt_decode(window.localStorage.getItem("token"));
-      dispatch({ type: "SET_USER", payload: userData });
+    try {
+      /* glogal google*/
+      google.accounts.id.initialize({
+        client_id:
+          "477480946204-rpt4a6fum1v8jh8banbdrtonp1g5ioa0.apps.googleusercontent.com",
+        callback: handleCallbackResponse,
+      });
+      google.accounts.id.renderButton(document.getElementById("singInDiv"), {
+        theme: "outline",
+        size: "large",
+      });
+      setIsToken(window.localStorage.getItem("token"));
+      console.log("localStorage get", window.localStorage.getItem("token"));
+      if (window.localStorage.getItem("token") !== null && window.localStorage.getItem("token") !== "null") {
+        const userData = jwt_decode(window.localStorage.getItem("token"));
+        dispatch({ type: "SET_USER", payload: userData });
+      }
+    } catch (err) {
+      console.error(err);
     }
   }, [isToken]);
 
@@ -74,7 +78,14 @@ const Main = (props) => {
             <p className={styles.profile_name}>{user.name}</p>
             <p className={styles.profile_email}>{user.email}</p>
           </h3>
-          <button onClick={signOut} className={!props.toggleChangeStyle ? styles.profile_signout_style1 : styles.profile_signout}>
+          <button
+            onClick={signOut}
+            className={
+              !props.toggleChangeStyle
+                ? styles.profile_signout_style1
+                : styles.profile_signout
+            }
+          >
             {t.signOut}
           </button>
         </div>
