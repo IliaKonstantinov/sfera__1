@@ -29,7 +29,7 @@ const MainContainer = (props) => {
   }
 
   const handleChangeLang = (lang) => {
-    if (window.localStorage.getItem("lang") !== "null") {
+    if (window.localStorage.getItem("lang") === "null" || window.localStorage.getItem("lang") !== lang) {
       window.localStorage.setItem("lang", lang);
     }
     router.push(router.pathname, router.pathname, { locale: lang });
@@ -49,7 +49,13 @@ const MainContainer = (props) => {
   useEffect(() => {
     let lang = window.localStorage.getItem("lang");
     let style = window.localStorage.getItem("style");
-    if (lang !== "null") {
+    if(lang === null) {
+      window.localStorage.setItem("lang", "null");
+    }
+    if(style === null) {
+      window.localStorage.setItem("style", "null");
+    }
+    if (lang !== "null" ) {
       handleChangeLang(lang);
       langSelect.current.value = lang;
     }
