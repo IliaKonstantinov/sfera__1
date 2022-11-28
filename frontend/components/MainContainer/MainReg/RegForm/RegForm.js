@@ -36,10 +36,8 @@ function RegForm(props) {
   }
 
   const onSubmit = (e) => {
-    console.log("OnSubmit data", e);
     LoginAPI.Registration(e)
       .then((data) => {
-        console.log("Response data", data);
         window.localStorage.setItem("token", data.access_token);
         reset({
           email: "",
@@ -64,6 +62,7 @@ function RegForm(props) {
         <input
           placeholder={t.email}
           className={styles.input_text}
+          data-testid="email"
           {...register("email", {
             required: true,
             pattern: {
@@ -77,16 +76,22 @@ function RegForm(props) {
           })}
         />
         {errors.email && errors.email.type == "required" && (
-          <p className={styles.error}>{t.enterEmail}</p>
+          <p 
+            className={styles.error}
+            data-testid="error"
+          >
+            {t.enterEmail}
+          </p>
         )}
         {errors.email && errors.email?.message && (
-          <p className={styles.error}>{errors.email.message}</p>
+          <p data-testid="error" className={styles.error}>{errors.email.message}</p>
         )}
       </div>
       <div>
         <input
           placeholder={t.password}
           className={styles.input_text}
+          data-testid="password"
           {...register("password", {
             required: true,
             minLength: {
@@ -97,16 +102,17 @@ function RegForm(props) {
           type="password"
         />
         {errors.password && errors.password.type == "required" && (
-          <p className={styles.error}>{t.enterPassword}</p>
+          <p data-testid="error" className={styles.error}>{t.enterPassword}</p>
         )}
         {errors.password && errors.password?.message && (
-          <p className={styles.error}>{errors.password.message}</p>
+          <p data-testid="error" className={styles.error}>{errors.password.message}</p>
         )}
       </div>
       <div>
         <input
           type="submit"
           value={t.submit}
+          data-testid="submit"
           className={
             !props.toggleChangeStyle
               ? styles.input_submit_style1

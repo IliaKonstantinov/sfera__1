@@ -61,7 +61,7 @@ const Main = (props) => {
         dispatch({ type: "SET_USER", payload: userData });
       }
     } catch (err) {
-      console.error(err);
+      // console.error(err);
     }
   }, [isToken]);
 

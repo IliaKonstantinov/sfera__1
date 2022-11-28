@@ -63,6 +63,7 @@ const Login = (props) => {
         <input
           placeholder={t.email}
           className={styles.input_text}
+          data-testid="email"
           {...register("email", {
             required: true,
             pattern: {
@@ -76,16 +77,17 @@ const Login = (props) => {
           })}
         />
         {errors.email && errors.email.type == "required" && (
-          <p className={styles.error}>{t.enterEmail}</p>
+          <p data-testid="errorEmpty" className={styles.error}>{t.enterEmail}</p>
         )}
         {errors.email && errors.email?.message && (
-          <p className={styles.error}>{errors.email.message}</p>
+          <p data-testid="error" className={styles.error}>{errors.email.message}</p>
         )}
       </div>
       <div>
         <input
           placeholder={t.password}
           className={styles.input_text}
+          data-testid="password"
           {...register("password", {
             required: true,
             minLength: {
@@ -96,15 +98,16 @@ const Login = (props) => {
           type="password"
         />
         {errors.password && errors.password.type == "required" && (
-          <p className={styles.error}>{t.enterPassword}</p>
+          <p data-testid="errorEmpty" className={styles.error}>{t.enterPassword}</p>
         )}
         {errors.password && errors.password?.message && (
-          <p className={styles.error}>{errors.password.message}</p>
+          <p data-testid="error" className={styles.error}>{errors.password.message}</p>
         )}
       </div>
       <div>
         <input
           type="submit"
+          data-testid="submit"
           value={t.login}
           className={
             !props.toggleChangeStyle
