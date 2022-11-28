@@ -39,11 +39,9 @@ const MainContainer = (props) => {
     window.localStorage.setItem("style", style);
     switch (style) {
       case "style1":
-        console.log("STYLE 1");
         props.changeStyle2();
         break;
       case "style2":
-        console.log("STYLE 2");
         props.changeStyle1();
     }
   };

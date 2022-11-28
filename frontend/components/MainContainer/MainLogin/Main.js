@@ -7,17 +7,13 @@ import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../translations";
 
 const Main = (props) => {
-  //console.log(props);
   const [isToken, setIsToken] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.mainPage.user);
-  //console.log(user);
 
   function handleCallbackResponse(response) {
-    console.log("Eccoded JWT ID token: " + response.credential);
     setIsToken(window.localStorage.setItem("token", response.credential));
     let userObject = jwt_decode(response.credential);
-    console.log(userObject);
     dispatch({ type: "SET_USER", payload: userObject });
   }
 
@@ -57,7 +53,6 @@ const Main = (props) => {
         size: "large",
       });
       setIsToken(window.localStorage.getItem("token"));
-      console.log(window.localStorage.getItem("token"));
       if (
         window.localStorage.getItem("token") !== "null" &&
         window.localStorage.getItem("token") !== null
