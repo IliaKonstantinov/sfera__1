@@ -3,12 +3,11 @@ import styles from "../../../../styles/RegForm.module.scss";
 import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
-import { connect, useDispatch, useSelector } from "react-redux";
-import { useRef } from "react";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-function RegForm(props) {
+function RegForm() {
   const {
     register,
     handleSubmit,
@@ -16,6 +15,9 @@ function RegForm(props) {
     reset,
     formState: { errors },
   } = useForm();
+  const toggleChangeStyle = useSelector(
+    (state) => state.mainPage.toggleChangeStyle
+  );
 
   const router = useRouter();
 
@@ -46,7 +48,7 @@ function RegForm(props) {
         toast.success(t.success);
       })
       .catch((err) => {
-        switch (err.response.data.status){
+        switch (err.response.data.status) {
           case 401:
             toast.error(t.err401);
             break;
@@ -76,15 +78,14 @@ function RegForm(props) {
           })}
         />
         {errors.email && errors.email.type == "required" && (
-          <p 
-            className={styles.error}
-            data-testid="error"
-          >
+          <p className={styles.error} data-testid="error">
             {t.enterEmail}
           </p>
         )}
         {errors.email && errors.email?.message && (
-          <p data-testid="error" className={styles.error}>{errors.email.message}</p>
+          <p data-testid="error" className={styles.error}>
+            {errors.email.message}
+          </p>
         )}
       </div>
       <div>
@@ -102,10 +103,14 @@ function RegForm(props) {
           type="password"
         />
         {errors.password && errors.password.type == "required" && (
-          <p data-testid="error" className={styles.error}>{t.enterPassword}</p>
+          <p data-testid="error" className={styles.error}>
+            {t.enterPassword}
+          </p>
         )}
         {errors.password && errors.password?.message && (
-          <p data-testid="error" className={styles.error}>{errors.password.message}</p>
+          <p data-testid="error" className={styles.error}>
+            {errors.password.message}
+          </p>
         )}
       </div>
       <div>
@@ -114,7 +119,7 @@ function RegForm(props) {
           value={t.submit}
           data-testid="submit"
           className={
-            !props.toggleChangeStyle
+            !toggleChangeStyle
               ? styles.input_submit_style1
               : styles.input_submit
           }
@@ -135,8 +140,4 @@ function RegForm(props) {
   );
 }
 
-let mapStateToProps = (state) => ({
-  toggleChangeStyle: state.mainPage.toggleChangeStyle,
-});
-
-export default connect(mapStateToProps, {})(RegForm);
+export default RegForm;

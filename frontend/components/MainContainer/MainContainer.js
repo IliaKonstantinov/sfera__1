@@ -5,9 +5,16 @@ import { useRouter } from "next/router";
 import { en, ru, cs } from "../../translations";
 import { useEffect, useRef } from "react";
 import { changeStyle1, changeStyle2 } from "../redux/main-reducer";
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const MainContainer = (props) => {
+  const dispatch = useDispatch();
+  const stylesArray = useSelector((state) => state.mainPage.stylesArray);
+  const toggleChangeStyle = useSelector(
+    (state) => state.mainPage.toggleChangeStyle
+  );
+  const languagesArray = useSelector((state) => state.mainPage.languagesArray);
+
   const router = useRouter();
   let langSelect = useRef();
   let styleSelect = useRef();
@@ -29,7 +36,10 @@ const MainContainer = (props) => {
   }
 
   const handleChangeLang = (lang) => {
-    if (window.localStorage.getItem("lang") === "null" || window.localStorage.getItem("lang") !== lang) {
+    if (
+      window.localStorage.getItem("lang") === "null" ||
+      window.localStorage.getItem("lang") !== lang
+    ) {
       window.localStorage.setItem("lang", lang);
     }
     router.push(router.pathname, router.pathname, { locale: lang });
@@ -39,23 +49,23 @@ const MainContainer = (props) => {
     window.localStorage.setItem("style", style);
     switch (style) {
       case "style1":
-        props.changeStyle2();
+        dispatch(changeStyle2());
         break;
       case "style2":
-        props.changeStyle1();
+        dispatch(changeStyle1());
     }
   };
 
   useEffect(() => {
     let lang = window.localStorage.getItem("lang");
     let style = window.localStorage.getItem("style");
-    if(lang === null) {
+    if (lang === null) {
       window.localStorage.setItem("lang", "null");
     }
-    if(style === null) {
+    if (style === null) {
       window.localStorage.setItem("style", "null");
     }
-    if (lang !== "null" ) {
+    if (lang !== "null") {
       handleChangeLang(lang);
       langSelect.current.value = lang;
     }
@@ -76,7 +86,7 @@ const MainContainer = (props) => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <header
-        className={!props.toggleChangeStyle ? styles.nav : styles.nav_style1}
+        className={!toggleChangeStyle ? styles.nav : styles.nav_style1}
         data-testid="main"
       >
         <div className={styles.link}>
@@ -87,11 +97,11 @@ const MainContainer = (props) => {
           <select
             onChange={(e) => handleChangeStyle(e.target.value)}
             className={
-              !props.toggleChangeStyle ? styles.locales_sryle1 : styles.locales
+              !toggleChangeStyle ? styles.locales_sryle1 : styles.locales
             }
             ref={styleSelect}
           >
-            {props.stylesArray.map((st) => (
+            {stylesArray.map((st) => (
               <option
                 value={st.value}
                 className={styles.settings_style}
@@ -105,16 +115,14 @@ const MainContainer = (props) => {
           <select
             onChange={(e) => handleChangeLang(e.target.value)}
             className={
-              !props.toggleChangeStyle ? styles.locales_sryle1 : styles.locales
+              !toggleChangeStyle ? styles.locales_sryle1 : styles.locales
             }
             ref={langSelect}
           >
-            {props.languagesArray.map((st) => (
+            {languagesArray.map((st) => (
               <option
                 value={st.value}
-                className={
-                  !props.toggleChangeStyle ? styles.locale1 : styles.locale
-                }
+                className={!toggleChangeStyle ? styles.locale1 : styles.locale}
                 key={st.id}
               >
                 {st.text}
@@ -128,14 +136,4 @@ const MainContainer = (props) => {
   );
 };
 
-let mapStateToProps = (state) => ({
-  style: state.mainPage.style,
-  stylesArray: state.mainPage.stylesArray,
-  toggleChangeStyle: state.mainPage.toggleChangeStyle,
-  languagesArray: state.mainPage.languagesArray,
-});
-
-export default connect(mapStateToProps, {
-  changeStyle1,
-  changeStyle2,
-})(MainContainer);
+export default MainContainer;

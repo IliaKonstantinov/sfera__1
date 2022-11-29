@@ -2,24 +2,29 @@ import styles from "../../../styles/Main.module.scss";
 import Login from "./Login/Login";
 import { useEffect, useState } from "react";
 import jwt_decode from "jwt-decode";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../translations";
+import { setUser } from "../../redux/main-reducer";
 
-const Main = (props) => {
+const Main = () => {
   const [isToken, setIsToken] = useState(null);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.mainPage.user);
+  const style = useSelector((state) => state.mainPage.style);
+  const toggleChangeStyle = useSelector(
+    (state) => state.mainPage.toggleChangeStyle
+  );
 
   function handleCallbackResponse(response) {
     setIsToken(window.localStorage.setItem("token", response.credential));
     let userObject = jwt_decode(response.credential);
-    dispatch({ type: "SET_USER", payload: userObject });
+    dispatch(setUser(userObject));
   }
 
   const signOut = () => {
     setIsToken(window.localStorage.setItem("token", null));
-    dispatch({ type: "SET_USER", payload: null });
+    dispatch(setUser(null));
   };
 
   const router = useRouter();
@@ -58,7 +63,7 @@ const Main = (props) => {
         window.localStorage.getItem("token") !== null
       ) {
         const userData = jwt_decode(window.localStorage.getItem("token"));
-        dispatch({ type: "SET_USER", payload: userData });
+        dispatch(setUser(userData));
       }
     } catch (err) {
       //console.error(err);
@@ -66,9 +71,7 @@ const Main = (props) => {
   }, [isToken]);
 
   return (
-    <main
-      className={!props.toggleChangeStyle ? styles.main_style1 : styles.main}
-    >
+    <main className={!toggleChangeStyle ? styles.main_style1 : styles.main}>
       {user !== null ? (
         <div>
           <img scr={user.pictures} />
@@ -79,7 +82,7 @@ const Main = (props) => {
           <button
             onClick={signOut}
             className={
-              !props.toggleChangeStyle
+              !toggleChangeStyle
                 ? styles.profile_signout_style1
                 : styles.profile_signout
             }
@@ -98,9 +101,4 @@ const Main = (props) => {
   );
 };
 
-let mapStateToProps = (state) => ({
-  style: state.mainPage.style,
-  toggleChangeStyle: state.mainPage.toggleChangeStyle,
-});
-
-export default connect(mapStateToProps, {})(Main);
+export default Main;

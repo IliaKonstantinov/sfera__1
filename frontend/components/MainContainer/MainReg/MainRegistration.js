@@ -1,11 +1,13 @@
 import styles from "../../../styles/Main.module.scss";
-import { connect } from "react-redux";
 import RegForm from "./RegForm/RegForm";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../translations";
+import { useSelector } from "react-redux";
 
-const MainRegistration = (props) => {
-  //console.log(props);
+const MainRegistration = () => {
+  const toggleChangeStyle = useSelector(
+    (state) => state.mainPage.toggleChangeStyle
+  );
 
   const router = useRouter();
 
@@ -27,7 +29,7 @@ const MainRegistration = (props) => {
 
   return (
     <main
-      className={!props.toggleChangeStyle ? styles.main_style1 : styles.main}
+      className={!toggleChangeStyle ? styles.main_style1 : styles.main}
       data-testid="registration"
     >
       <div className={styles.form_wrapper}>
@@ -39,9 +41,4 @@ const MainRegistration = (props) => {
   );
 };
 
-let mapStateToProps = (state) => ({
-  style: state.mainPage.style,
-  toggleChangeStyle: state.mainPage.toggleChangeStyle,
-});
-
-export default connect(mapStateToProps, {})(MainRegistration);
+export default MainRegistration;

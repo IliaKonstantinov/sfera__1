@@ -1,11 +1,11 @@
 import { combineReducers, createStore } from "redux";
 import mainReducer from "./main-reducer";
+import { configureStore } from "@reduxjs/toolkit";
 
-let reducers = combineReducers({
-  mainPage: mainReducer,
+const store = configureStore({
+  reducer: {
+    mainPage: mainReducer,
+  },
 });
-
-let store = createStore(reducers);
-
 
 export default store;

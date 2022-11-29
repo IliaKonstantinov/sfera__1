@@ -4,11 +4,12 @@ import { LoginAPI } from "../../../../pages/api/api";
 import { useRouter } from "next/router";
 import { cs, en, ru } from "../../../../translations";
 import jwt_decode from "jwt-decode";
-import { connect, useDispatch, useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
+import { setUser } from "../../../redux/main-reducer";
 import "react-toastify/dist/ReactToastify.css";
 
-const Login = (props) => {
+const Login = () => {
   const {
     register,
     handleSubmit,
@@ -18,6 +19,9 @@ const Login = (props) => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.mainPage.user);
+  const toggleChangeStyle = useSelector(
+    (state) => state.mainPage.toggleChangeStyle
+  );
 
   const onSubmit = (e) => {
     LoginAPI.PostLogin(e)
@@ -26,10 +30,10 @@ const Login = (props) => {
         localStorage.setItem("token", data.access_token);
         let userObjectLogin = jwt_decode(data.access_token);
         console.log(userObjectLogin);
-        dispatch({ type: "SET_USER", payload: userObjectLogin });
+        dispatch(setUser(userObjectLogin));
       })
       .catch((err) => {
-        switch (err.response.data.status){
+        switch (err.response.data.status) {
           case 402:
             toast.error(t.err402);
             break;
@@ -77,10 +81,14 @@ const Login = (props) => {
           })}
         />
         {errors.email && errors.email.type == "required" && (
-          <p data-testid="errorEmpty" className={styles.error}>{t.enterEmail}</p>
+          <p data-testid="errorEmpty" className={styles.error}>
+            {t.enterEmail}
+          </p>
         )}
         {errors.email && errors.email?.message && (
-          <p data-testid="error" className={styles.error}>{errors.email.message}</p>
+          <p data-testid="error" className={styles.error}>
+            {errors.email.message}
+          </p>
         )}
       </div>
       <div>
@@ -98,10 +106,14 @@ const Login = (props) => {
           type="password"
         />
         {errors.password && errors.password.type == "required" && (
-          <p data-testid="errorEmpty" className={styles.error}>{t.enterPassword}</p>
+          <p data-testid="errorEmpty" className={styles.error}>
+            {t.enterPassword}
+          </p>
         )}
         {errors.password && errors.password?.message && (
-          <p data-testid="error" className={styles.error}>{errors.password.message}</p>
+          <p data-testid="error" className={styles.error}>
+            {errors.password.message}
+          </p>
         )}
       </div>
       <div>
@@ -110,7 +122,7 @@ const Login = (props) => {
           data-testid="submit"
           value={t.login}
           className={
-            !props.toggleChangeStyle
+            !toggleChangeStyle
               ? styles.input_submit_style1
               : styles.input_submit
           }
@@ -131,8 +143,4 @@ const Login = (props) => {
   );
 };
 
-let mapStateToProps = (state) => ({
-  toggleChangeStyle: state.mainPage.toggleChangeStyle,
-});
-
-export default connect(mapStateToProps, {})(Login);
+export default Login;
